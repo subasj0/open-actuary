@@ -47,13 +47,26 @@ async function callTool(request:Request,name:string,args:Arguments){const databa
  if(name==='initialize_pilot')return seedPilot(database);
  throw new AppError(404,'Unknown tool.');
 }
-export async function mcp(request:Request){let body:{id?:number|string;method?:string;params?:{name?:string;arguments?:Arguments;protocolVersion?:string}}={};try{
- body=await readJson(request);const result=(value:unknown)=>Response.json({jsonrpc:'2.0',id:body.id??null,result:value},{headers:{'cache-control':'no-store'}});
+const LEGACY_VERSION='2025-11-25',MODERN_VERSION='2026-07-28';
+const serverInfo={name:'open-actuary',version:'1.0.1'};
+export async function mcp(request:Request){let body:{id?:number|string;method?:string;params?:{name?:string;arguments?:Arguments;protocolVersion?:string;_meta?:Record<string,unknown>}}={};try{
+ body=await readJson(request);
+ const modern=request.headers.get('mcp-protocol-version')===MODERN_VERSION;
+ const result=(value:unknown)=>{
+  const tagged=modern&&value&&typeof value==='object'?{...value,_meta:{...((value as {_meta?:unknown})._meta as object), 'io.modelcontextprotocol/serverInfo':serverInfo}}:value;
+  return Response.json({jsonrpc:'2.0',id:body.id??null,result:tagged},{headers:{'cache-control':'no-store'}});
+ };
+ if(modern){
+  const declared=body.params?._meta?.['io.modelcontextprotocol/protocolVersion'];
+  if(declared!==MODERN_VERSION)throw new AppError(400,'Modern MCP requests must declare protocol version 2026-07-28 in _meta.');
+  const headerMethod=request.headers.get('mcp-method');
+  if(headerMethod&&headerMethod!==body.method)throw new AppError(400,'Mcp-Method does not match the JSON-RPC method.');
+ }
  if(body.method==='notifications/initialized')return new Response(null,{status:204});
- if(body.method==='server/discover')return result({supportedVersions:['2025-11-25'],capabilities:{tools:{}}});
- if(body.method==='initialize')return result({protocolVersion:body.params?.protocolVersion||'2025-11-25',serverInfo:{name:'open-actuary',version:'1.0.0'},capabilities:{tools:{}}});
+ if(body.method==='server/discover')return result({supportedVersions:[MODERN_VERSION,LEGACY_VERSION],capabilities:{tools:{}},ttlMs:300000,cacheScope:'private'});
+ if(body.method==='initialize')return result({protocolVersion:body.params?.protocolVersion===LEGACY_VERSION?LEGACY_VERSION:LEGACY_VERSION,serverInfo,capabilities:{tools:{}}});
  if(body.method==='ping')return result({});
- if(body.method==='tools/list')return result({tools:MCP_TOOLS});
+ if(body.method==='tools/list')return result(modern?{tools:MCP_TOOLS,ttlMs:300000,cacheScope:'private'}:{tools:MCP_TOOLS});
  if(body.method==='tools/call'){try{const data=await callTool(request,body.params?.name||'',body.params?.arguments||{});return result({content:[{type:'text',text:JSON.stringify(data)}]});}catch(error){const e=error instanceof AppError?error:new AppError(500,'The operation failed. Re-read the saved state before retrying.');return result({isError:true,content:[{type:'text',text:JSON.stringify({error:e.message,status:e.status,details:e.details})}]});}}
  return Response.json({jsonrpc:'2.0',id:body.id??null,error:{code:-32601,message:'Method not found'}},{status:400});
  }catch(error){console.warn('MCP rejected request:',error instanceof Error?error.message:'invalid request');return Response.json({jsonrpc:'2.0',id:body.id??null,error:{code:-32600,message:error instanceof Error?error.message:'Invalid request'}},{status:400});}}
