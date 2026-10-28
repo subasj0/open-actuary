@@ -1,0 +1,21 @@
+export type Objective = { id: string; description: string };
+export type Chapter = { id: string; title: string; lessonIds: string[] };
+export type Course = { id: string; title: string; subject: string; edition: string; description: string; scopeNote: string; objectives: Objective[]; chapters: Chapter[] };
+export type Criterion = { text: string; marks: number; taughtIn: string[] };
+export type Block = {
+ id: string; type: 'prose'|'heading'|'callout'|'math'|'table'|'worked'|'question'|'lab'|'widget'|'image';
+ objectives?: string[]; title?: string; text?: string; tone?: 'idea'|'warning'|'definition'; level?: 2|3;
+ tex?: string; explanation?: string; headers?: string[]; rows?: string[][];
+ steps?: { title: string; text: string; why?: string }[];
+ questionKind?: 'choice'|'numeric'|'written'; prompt?: string; options?: string[]; correct?: number; answer?: number; tolerance?: number; unit?: string;
+ feedback?: string[]; hints?: string[]; solution?: string; rubric?: Criterion[]; taughtIn?: string[];
+ labKind?: 'sampling'|'coverage'|'testing'; purpose?: string; prediction?: string; debrief?: string; fallback?: string; transfer?: string;
+ html?: string; height?: number; checks?: string[]; src?: string; alt?: string;
+};
+export type Coverage = { objective: string; teaching: string[]; practice: string[]; note?: string };
+export type Lesson = { id: string; courseId: string; title: string; subtitle: string; minutes: number; prerequisites: string[]; outcomes: string[]; objectiveIds: string[]; scopeNote: string; blocks: Block[]; summary: string[]; coverage: Coverage[]; provenance: string; technicalNotes: string[] };
+export type Issue = { severity: 'error'|'warning'; path: string; message: string };
+export type Review = { revision: number; reviewer: string; level: 'pilot'|'expert-reviewed'; checks: { technical: string; pedagogy: string; interaction: string; accessibility: string; originality: string }; unresolved: string[]; createdAt?: string };
+export type DocumentRecord<T=Course|Lesson> = { id: string; kind: 'course'|'lesson'; courseId: string; draft: T; revision: number; published: T|null; publishedRevision: number|null; publishedReview: Review|null; review: Review|null; updatedAt: string };
+export type Progress = { completed: boolean; bookmarked: boolean; notes: string; attempts: Record<string, {attempts: number; correct?: boolean; revealed?: boolean; response?:string|number}>; updatedAt?:number; lessonRevision?:number };
+export const EMPTY_PROGRESS: Progress = { completed:false, bookmarked:false, notes:'', attempts:{} };

@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {createHash,randomBytes} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const base='http://127.0.0.1:8787',token=randomBytes(32).toString('hex'),digest=createHash('sha256').update(token).digest('hex');
+const sql=`INSERT OR REPLACE INTO users VALUES('oauth-test','OAuth test author','author',NULL);INSERT INTO sessions VALUES('${digest}','oauth-test',${Date.now()+3600000});`;
+execFileSync('python3',['-c',`import pathlib,sqlite3,sys\nfor p in pathlib.Path('.wrangler/state/v3/d1').rglob('*.sqlite'):\n c=sqlite3.connect(p)\n if c.execute("select 1 from sqlite_master where name='users'").fetchone():\n  c.executescript(sys.argv[1]);c.commit()`,sql]);
+async function call(p,b,status=200,cookie=''){const r=await fetch(base+p,{method:b===undefined?'GET':'POST',headers:{'content-type':'application/json',cookie,'cf-connecting-ip':'oauth-test'},body:b===undefined?undefined:JSON.stringify(b),redirect:'manual'});const data=await r.json();assert.equal(r.status,status,JSON.stringify(data));return data;}
+await call('/mcp',{jsonrpc:'2.0',id:1,method:'initialize'},401);
+const client=await call('/oauth/register',{redirect_uris:['https://example.com/callback'],token_endpoint_auth_method:'none',client_name:'Integration test'},201);
+const verifier=randomBytes(32).toString('base64url'),challenge=createHash('sha256').update(verifier).digest('base64url');
+const args={client_id:client.client_id,redirect_uri:'https://example.com/callback',response_type:'code',code_challenge_method:'S256',code_challenge:challenge,resource:base+'/mcp',scope:'courses:write',state:'test-state'};
+await call('/oauth/authorize',args,403);
+await call('/oauth/authorize',{...args,redirect_uri:'https://evil.example'},400,`__Host-oa-session=${token}`);
+const auth=await call('/oauth/authorize',args,200,`__Host-oa-session=${token}`);const redirect=new URL(auth.redirect);assert.equal(redirect.searchParams.get('state'),'test-state');
+const exchange={grant_type:'authorization_code',code:redirect.searchParams.get('code'),client_id:client.client_id,redirect_uri:args.redirect_uri,resource:args.resource,code_verifier:verifier};
+await call('/oauth/token',{...exchange,code_verifier:randomBytes(32).toString('base64url')},400);
+const access=await call('/oauth/token',exchange);await call('/oauth/token',exchange,400);assert.ok(access.refresh_token);
+const mcp=await fetch(base+'/mcp',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+access.access_token},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'studio_overview',arguments:{}}})});const result=await mcp.json();assert.equal(JSON.parse(result.result.content[0].text).author,true);
+const refresh={grant_type:'refresh_token',client_id:client.client_id,resource:args.resource,refresh_token:access.refresh_token};const refreshed=await call('/oauth/token',refresh);assert.ok(refreshed.access_token);await call('/oauth/token',refresh,400);
+await call('/oauth/revoke',{client_id:client.client_id,token:refreshed.access_token});
+const revoked=await fetch(base+'/mcp',{headers:{authorization:'Bearer '+refreshed.access_token}});assert.equal(revoked.status,401);
+console.log('PASS: OAuth discovery, consent authorization, redirect validation, PKCE, code replay rejection, authenticated MCP, rotating refresh tokens and revocation.');

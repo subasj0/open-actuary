@@ -1,0 +1,661 @@
+[
+  {
+    "id": "sampling-means",
+    "minutes": 30,
+    "coverage": [
+      {
+        "objective": "2.2.1",
+        "teaching": [
+          "population-story"
+        ],
+        "practice": [
+          "objects-check"
+        ]
+      },
+      {
+        "objective": "2.2.2",
+        "teaching": [
+          "population-story",
+          "sampling-warning"
+        ],
+        "practice": [
+          "clt-transfer"
+        ]
+      },
+      {
+        "objective": "2.2.3",
+        "teaching": [
+          "distribution-story"
+        ],
+        "practice": [
+          "objects-check"
+        ]
+      },
+      {
+        "objective": "2.2.4.mean",
+        "teaching": [
+          "covariance-bridge",
+          "mean-derivation",
+          "se-formula"
+        ],
+        "practice": [
+          "se-practice",
+          "mean-reconstruct"
+        ]
+      },
+      {
+        "objective": "1.5.1",
+        "teaching": [
+          "clt-statement"
+        ],
+        "practice": [
+          "clt-reconstruct",
+          "clt-transfer"
+        ]
+      },
+      {
+        "objective": "1.5.2",
+        "teaching": [
+          "sampling-lab",
+          "simulation-reporting"
+        ],
+        "practice": [
+          "clt-transfer"
+        ]
+      }
+    ],
+    "changes": [
+      {
+        "after": "derive-heading",
+        "block": {
+          "id": "covariance-bridge",
+          "type": "prose",
+          "text": "Covariance describes how two random deviations move together. For finite second moments, Cov(X,Y)=E[(X−E[X])(Y−E[Y])]. A positive value means same-sign deviations contribute more on average than opposite-sign deviations; independence makes covariance zero, although zero covariance alone does not establish independence. Covariance has the product of the two variables’ units.\n\nTo see why it enters, write U=X−E[X] and V=Y−E[Y]. Then Var(X+Y)=E[(U+V)²]=E[U²]+2E[UV]+E[V²]=Var(X)+2Cov(X,Y)+Var(Y). Each pair of different variables contributes twice when the squared sum is expanded. Dividing a sum by n scales its variance by 1/n². These are the two ingredients used next.\n\nBoundary check: suppose X₁=⋯=Xₙ=Y, all copies of the same random outcome with variance σ²>0. Then X̄=Y and Var(X̄)=σ², regardless of n. The covariance formula agrees: every distinct pair has covariance σ², giving [nσ²+n(n−1)σ²]/n²=σ². A larger row count cannot create independent information.",
+          "objectives": [
+            "2.2.4.mean"
+          ]
+        }
+      },
+      {
+        "after": "se-practice",
+        "block": {
+          "id": "mean-reconstruct",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "2.2.4.mean"
+          ],
+          "prompt": "Without looking at the displayed formula, reconstruct E[X̄] and Var(X̄) for n observations with common mean μ and variance σ². State exactly where independence enters, and show what additional term appears when the observations have nonzero covariances.",
+          "taughtIn": [
+            "covariance-bridge",
+            "mean-derivation",
+            "se-formula"
+          ],
+          "solution": "Write X̄=(1/n)∑Xᵢ. Linearity gives E[X̄]=(1/n)∑E[Xᵢ]=μ; independence is unnecessary for that step. The variance of a scaled variable is multiplied by the square of the scale. Hence Var(X̄)=(1/n²)[∑Var(Xᵢ)+2∑ᵢ<ⱼ Cov(Xᵢ,Xⱼ)]. With common variance this is σ²/n+(2/n²)∑ᵢ<ⱼ Cov(Xᵢ,Xⱼ). Independence makes every covariance zero, leaving σ²/n. These identities explain why a large correlated sample need not have the independent-sample standard error. As a check on the general expression, identical copies Xᵢ=Y give Var(X̄)=σ², because the n(n−1)/2 equal covariance terms exactly supply the variation omitted by an independence assumption.",
+          "rubric": [
+            {
+              "text": "Construct X̄=(1/n)∑Xᵢ and derive its expectation μ by linearity, which needs no independence.",
+              "marks": 2,
+              "taughtIn": [
+                "mean-derivation"
+              ]
+            },
+            {
+              "text": "Use the squared scale 1/n² when taking the variance of the sum.",
+              "marks": 2,
+              "taughtIn": [
+                "covariance-bridge",
+                "mean-derivation"
+              ]
+            },
+            {
+              "text": "Expand the sum variance into nσ² plus twice the sum of distinct-pair covariances.",
+              "marks": 2,
+              "taughtIn": [
+                "covariance-bridge",
+                "mean-derivation"
+              ]
+            },
+            {
+              "text": "Specialize the variance expression to independent observations by setting covariances to zero and simplify to σ²/n.",
+              "marks": 2,
+              "taughtIn": [
+                "mean-derivation",
+                "se-formula"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "after": "clt-statement",
+        "block": {
+          "id": "clt-reconstruct",
+          "type": "question",
+          "questionKind": "written",
+          "prompt": "Without the displayed theorem, state the iid central limit theorem for a sample mean: specify the assumptions, the standardized random variable and its limiting distribution. Explain whether it makes individual observations normal, whether it is exact for a finite sample from a skewed population, and why a population with infinite variance is outside this theorem. Finally distinguish the normal-population case. [7 marks]",
+          "solution": "For independent identically distributed X₁,…,Xₙ with finite common mean μ and finite nonzero variance σ², √n(X̄−μ)/σ converges in distribution to N(0,1) as n→∞. [2 assumptions; 2 standardized variable and limiting law.] This concerns the sampling distribution of a mean, not the distribution of individual observations. For a skewed population the finite-n normal approximation is not exact, with accuracy depending on the population and probability region. [1] Infinite variance violates the finite-variance hypothesis, so this stated theorem cannot justify the approximation. [1] If the population is normal, X̄ itself has the exact N(μ,σ²/n) distribution at every n, without waiting for a limit. [1]",
+          "taughtIn": [
+            "distribution-story",
+            "clt-statement"
+          ],
+          "objectives": [
+            "1.5.1"
+          ],
+          "rubric": [
+            {
+              "text": "State iid observations, finite mean and finite nonzero variance.",
+              "marks": 2,
+              "taughtIn": [
+                "clt-statement"
+              ]
+            },
+            {
+              "text": "Give √n(X̄−μ)/σ and convergence in distribution to N(0,1) as n→∞.",
+              "marks": 2,
+              "taughtIn": [
+                "clt-statement"
+              ]
+            },
+            {
+              "text": "Distinguish individual observations from repeated-sample means and identify finite-n normality as approximate for a skewed population.",
+              "marks": 1,
+              "taughtIn": [
+                "distribution-story",
+                "clt-statement"
+              ]
+            },
+            {
+              "text": "Identify infinite variance as failure of a stated hypothesis.",
+              "marks": 1,
+              "taughtIn": [
+                "clt-statement"
+              ]
+            },
+            {
+              "text": "Distinguish exact normality of the mean for a normal population at every n.",
+              "marks": 1,
+              "taughtIn": [
+                "clt-statement"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "after": "clt-reconstruct",
+        "block": {
+          "id": "sampling-lab",
+          "type": "lab",
+          "labKind": "sampling",
+          "title": "Build a distribution of means",
+          "objectives": [
+            "1.5.1",
+            "1.5.2",
+            "2.2.3",
+            "2.2.4.mean"
+          ],
+          "purpose": "Compare the population shape with the variability and approximate shape of repeated sample means.",
+          "prediction": "Before drawing, predict what happens to the centre, spread and skew when sample size changes from 4 to 64 for an exponential population.",
+          "debrief": "The empirical histogram is finite simulation evidence. Compare its spread with σ/√n. The normal overlay is a theoretical reference, not a fit guaranteed by a smooth-looking histogram. Use Compare spread for a shared horizontal scale. Then choose Inspect shape at each n to examine the normal reference; this view changes the horizontal scale, so its widths cannot be compared across n.",
+          "fallback": "For an exponential population with mean and standard deviation 10, the theoretical mean of every sample mean is 10. Its standard error is 5 at n=4 and 1.25 at n=64. Averaging reduces right skew, although finite-n means are not exactly normal.",
+          "transfer": "Would taking 64 neighbouring correlated records justify the same standard error? Explain which step of the variance argument would change."
+        }
+      },
+      {
+        "after": "sampling-lab",
+        "block": {
+          "id": "simulation-reporting",
+          "type": "prose",
+          "text": "Report a simulation as an observation, not as a theorem: name the population, n, number of repetitions and seed, then compare the empirical standard deviation of the generated means with σ/√n. If the lab does not display the seed or repetition count, say that those settings were not exposed; do not invent them. Compare the histogram with the normal reference and describe what you actually see. Finite empirical spread need not equal the theoretical value.\n\nThe following is an actual separate reference computation, not a run of the on-screen lab. Algorithm: Python random.Random(2710), reset to that seed for each n; draw independent exponential values with random.expovariate(0.1), average n values, repeat 2,000 times, and compute empirical standard deviation with divisor 1,999 (statistics.stdev). For n=4, the empirical centre was 10.269042 and spread 5.051620, versus theoretical centre 10 and spread 5. For n=64, they were 10.005911 and 1.229425, versus 10 and 1.25. The differences are finite-simulation variation. These computed summaries do not themselves establish a histogram shape or validate real-world sampling assumptions; inspect the lab plot separately. Other algorithms, seeds or repetition counts can produce different values.",
+          "objectives": [
+            "1.5.2"
+          ]
+        }
+      },
+      {
+        "after": "simulation-reporting",
+        "block": {
+          "id": "clt-transfer",
+          "type": "question",
+          "prompt": "First use the sampling lab to generate exponential sample means at n=4 and n=64. Use Compare spread to compare their horizontal spread, then Inspect shape at each n to examine the normal reference on its fitted scale. Record each empirical spread and any displayed simulation seed/repetition count (say if unavailable), compare each with its theoretical standard error, and comment on the normal reference shape without treating one finite histogram as proof. Then a colleague says: “At n = 100 all individual costs are approximately normal, and the variance of the mean must be σ²/100 even if the records are correlated.” Identify two separate errors.",
+          "solution": "An honest report gives the two empirical spreads actually observed, settings where available, comparison with theoretical standard errors 5 and 1.25, and a description of the visible shapes. As a labelled computed example, the separate reference computation in the reporting example above used random.Random(2710), reset for each n, exponential rate 0.1 and 2,000 repetitions: spreads were 5.051620 at n=4 and 1.229425 at n=64. These are example results, not required lab outputs. Reproduce the comparison with your own run; describe its actual histogram rather than copying an expected shape. The n=64 means are typically less skewed, but one finite plot is not proof. The colleague’s first error confuses a sampling distribution with individual costs. The second discards covariance contributions: independence removes them from the sum variance, and a large n does not do so automatically.",
+          "taughtIn": [
+            "distribution-story",
+            "mean-derivation",
+            "clt-statement",
+            "sampling-lab",
+            "simulation-reporting"
+          ],
+          "objectives": [
+            "1.5.1",
+            "1.5.2",
+            "2.2.2"
+          ],
+          "questionKind": "written",
+          "rubric": [
+            {
+              "text": "Report both actual empirical spreads and available settings, compare with theoretical spread and the observed normal-reference shape, and acknowledge finite simulation variation.",
+              "marks": 2,
+              "taughtIn": [
+                "sampling-lab",
+                "clt-statement",
+                "simulation-reporting"
+              ]
+            },
+            {
+              "text": "Distinguish individual observations from the sampling distribution of a mean.",
+              "marks": 2,
+              "taughtIn": [
+                "distribution-story",
+                "clt-statement"
+              ]
+            },
+            {
+              "text": "Explain the independence/covariance issue rather than relying on sample size.",
+              "marks": 2,
+              "taughtIn": [
+                "mean-derivation"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "after": "clt-transfer",
+        "block": {
+          "id": "sampling-readiness",
+          "type": "callout",
+          "title": "Choose a repair, then retry",
+          "tone": "idea",
+          "text": "If you used σ²/n as a standard error, return to “Why averaging changes spread” and keep variance in squared units. If you removed covariance merely because n is large, revisit the identical-copy check in the covariance bridge. If you made individual observations normal, revisit “When does the shape become normal?” Then retry without the formula: with σ=15 and n=25, explain why the independent-mean standard error is 3, whereas identical copies have standard error 15. State the CLT assumptions aloud before using any normal approximation. Revealing feedback or moving controls does not establish mastery."
+        }
+      }
+    ]
+  },
+  {
+    "id": "testing-evidence",
+    "minutes": 35,
+    "coverage": [
+      {
+        "objective": "3.3.1.normal-test",
+        "teaching": [
+          "test-hypotheses",
+          "test-rule",
+          "test-errors",
+          "power-worlds",
+          "power-calculation",
+          "power-tradeoff"
+        ],
+        "practice": [
+          "test-interpret",
+          "test-transfer",
+          "power-completion",
+          "test-full"
+        ]
+      },
+      {
+        "objective": "3.3.2.normal-known",
+        "teaching": [
+          "test-rule",
+          "test-stat",
+          "test-example",
+          "two-sided"
+        ],
+        "practice": [
+          "test-numeric",
+          "test-transfer",
+          "test-full"
+        ]
+      }
+    ],
+    "changes": [
+      {
+        "after": "errors-heading",
+        "block": {
+          "id": "test-errors",
+          "type": "prose",
+          "text": "A Type I error rejects the null when it is true. For the exact model and continuous upper-tail rule above, its probability is α. A Type II error fails to reject when a specified alternative mean is true. Its probability depends on which alternative mean we choose. Power at that alternative is one minus its Type II error probability: the chance the rule detects the departure.",
+          "objectives": [
+            "3.3.1.normal-test"
+          ]
+        }
+      },
+      {
+        "after": "test-errors",
+        "block": {
+          "id": "power-worlds",
+          "type": "table",
+          "title": "One fixed rule, evaluated in two worlds",
+          "headers": [
+            "World",
+            "Distribution of X̄ (n=25, σ=20)",
+            "Reject using the same cutoff",
+            "Meaning of upper-tail probability"
+          ],
+          "rows": [
+            [
+              "Null: μ=100",
+              "Normal mean 100, standard error 4",
+              "X̄>106.5794",
+              "Type I error = 0.05"
+            ],
+            [
+              "Specified alternative: μ=108",
+              "Normal mean 108, standard error 4",
+              "X̄>106.5794",
+              "Power at 108 ≈ 0.63876"
+            ]
+          ],
+          "objectives": [
+            "3.3.1.normal-test"
+          ]
+        }
+      },
+      {
+        "after": "power-worlds",
+        "block": {
+          "id": "power-calculation",
+          "type": "worked",
+          "title": "Keep the rule fixed; change the probability model",
+          "objectives": [
+            "3.3.1.normal-test"
+          ],
+          "steps": [
+            {
+              "title": "Choose the cutoff under H₀",
+              "text": "At α=0.05 and n=25, the upper cutoff is c=100+z₀.₉₅×4≈106.5794. This is fixed before sampling.",
+              "why": "The null tail above c is 0.05, which sets the false-alarm probability."
+            },
+            {
+              "title": "Specify an alternative world",
+              "text": "If μ=108, X̄ has mean 108 and standard error 4. The rule still rejects only when X̄>c.",
+              "why": "Power evaluates the original decision rule; it does not redesign its cutoff around 108."
+            },
+            {
+              "title": "Write the event before standardizing",
+              "text": "Power at 108 = P₁₀₈(X̄>c)=1−Φ((c−108)/4)≈0.63876. Type II error at 108 is the complementary probability, about 0.36124.",
+              "why": "Subtract the mean of the world in which the probability is evaluated. The observed sample mean is not an input to this power calculation."
+            }
+          ]
+        }
+      },
+      {
+        "after": "power-calculation",
+        "block": {
+          "id": "power-tradeoff",
+          "type": "prose",
+          "text": "Lowering α while keeping n fixed makes false alarms less frequent under H₀, but pushes the upper cutoff outwards and reduces power against a given increase. Increasing a valid independent sample size shrinks the standard error and can improve detection of the same departure. A p-value uses observed data and the null world; power uses a specified alternative world and the whole rejection rule. Neither is the probability that a hypothesis is true. A very small p-value does not tell us whether a difference matters commercially: estimate the change, consider its uncertainty, and relate it to costs or decisions.",
+          "objectives": [
+            "3.3.1.normal-test"
+          ]
+        }
+      },
+      {
+        "after": "power-tradeoff",
+        "block": {
+          "id": "power-completion",
+          "type": "question",
+          "questionKind": "written",
+          "prompt": "Keep the original rule n=25, σ=20, μ₀=100, α=0.05 and c=106.5794. In the hypothetical world μ=104, give the mean and standard error of X̄, write the power event, and complete its standardization. Use Φ(0.64485)≈0.74049 to obtain power and Type II error. Is power higher or lower than at μ=108, and why? [5 marks]",
+          "solution": "Under μ=104, X̄ is normal with mean 104 and standard error 4. [1] The unchanged rule gives P₁₀₄(X̄>106.5794). [1] Standardize about 104: (106.5794−104)/4≈0.64485. [1] Power≈1−0.74049=0.25951 and Type II error≈0.74049. [1] Power is lower than 0.63876 at 108: 104 lies farther below the same upper cutoff, with the same spread. [1] No observed sample mean or observed p-value was changed or needed.",
+          "taughtIn": [
+            "test-errors",
+            "power-worlds",
+            "power-calculation",
+            "power-tradeoff"
+          ],
+          "objectives": [
+            "3.3.1.normal-test"
+          ],
+          "rubric": [
+            {
+              "text": "Give alternative-world mean 104 and standard error 4.",
+              "marks": 1,
+              "taughtIn": [
+                "power-worlds",
+                "power-calculation"
+              ]
+            },
+            {
+              "text": "Write P₁₀₄(X̄>106.5794), keeping the null-derived cutoff fixed.",
+              "marks": 1,
+              "taughtIn": [
+                "power-calculation"
+              ]
+            },
+            {
+              "text": "Standardize the cutoff about 104 to obtain approximately 0.64485.",
+              "marks": 1,
+              "taughtIn": [
+                "power-calculation"
+              ]
+            },
+            {
+              "text": "Obtain power 0.25951 and complementary Type II probability 0.74049.",
+              "marks": 1,
+              "taughtIn": [
+                "test-errors",
+                "power-calculation"
+              ]
+            },
+            {
+              "text": "Explain lower detection at 104 than 108 through distance from the same cutoff and the same spread.",
+              "marks": 1,
+              "taughtIn": [
+                "power-worlds",
+                "power-tradeoff"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "after": "testing-lab",
+        "block": {
+          "id": "test-interpret",
+          "type": "question",
+          "prompt": "An upper-tail test returns p=0.04 at a pre-specified 5% level. Which conclusion is justified?",
+          "solution": "Reject the null using the declared rule, because 0.04≤0.05. The p-value is a tail probability conditional on the null model, not its posterior probability, and does not measure the size or importance of a departure.",
+          "taughtIn": [
+            "test-rule",
+            "test-example",
+            "test-errors",
+            "testing-lab",
+            "power-tradeoff"
+          ],
+          "objectives": [
+            "3.3.1.normal-test"
+          ],
+          "questionKind": "choice",
+          "options": [
+            "The null has a 4% chance of being true.",
+            "The process has a commercially important increase with 96% certainty.",
+            "The observed statistic lies in the declared rejection region under the model."
+          ],
+          "correct": 2,
+          "feedback": [
+            "The p-value conditions on the null; it does not assign a probability to that hypothesis.",
+            "Statistical evidence does not establish effect size or commercial importance.",
+            "Correct. This is a conditional decision using the pre-specified rule."
+          ]
+        }
+      },
+      {
+        "after": "test-interpret",
+        "block": {
+          "id": "test-full",
+          "type": "question",
+          "questionKind": "written",
+          "prompt": "A process has reference mean cost 50 currency units. Before data collection, the team asks specifically whether the mean has increased. An independent normal sample has known population σ=12, n=36 and observed mean 53.5. At a pre-specified 5% significance level, state the hypotheses, calculate the standard error, z and upper-tail p-value, make the decision and interpret it in context. Use Φ(1.75)=0.95994. For a second team whose question was pre-specified as a change in either direction, use the same data to calculate the two-sided p-value and decision at 5%. Explain why the first team cannot choose a tail after seeing the result. [10 marks]",
+          "solution": "For the first team H₀:μ=50 and H₁:μ>50, with direction fixed before seeing the sample. [2] SE=12/√36=2 currency units and z=(53.5−50)/2=1.75. [2] The upper-tail p-value is 1−0.95994=0.04006, below 0.05, so reject H₀. [2] Under the stated sampling and normal model there is evidence of an increase at the 5% level; this does not prove an increase with 95% probability or establish commercial importance. [2] For a pre-specified two-sided H₁:μ≠50, p=2×0.04006=0.08012, so do not reject at 5%. Selecting the one-sided rule after inspecting the sign changes the error properties and is not the declared two-sided procedure. [2]",
+          "taughtIn": [
+            "test-hypotheses",
+            "test-rule",
+            "test-stat",
+            "test-example",
+            "two-sided",
+            "power-tradeoff"
+          ],
+          "objectives": [
+            "3.3.1.normal-test",
+            "3.3.2.normal-known"
+          ],
+          "rubric": [
+            {
+              "text": "State H₀:μ=50 and the pre-specified upper H₁:μ>50.",
+              "marks": 2,
+              "taughtIn": [
+                "test-hypotheses"
+              ]
+            },
+            {
+              "text": "Calculate SE=2 currency units and z=1.75.",
+              "marks": 2,
+              "taughtIn": [
+                "test-stat",
+                "test-example"
+              ]
+            },
+            {
+              "text": "Calculate upper p=0.04006 and reject by comparison with 0.05.",
+              "marks": 2,
+              "taughtIn": [
+                "test-rule",
+                "test-example"
+              ]
+            },
+            {
+              "text": "Give a conditional contextual evidence-of-increase conclusion without treating the test as a posterior probability or proof of practical importance.",
+              "marks": 2,
+              "taughtIn": [
+                "test-example",
+                "power-tradeoff"
+              ]
+            },
+            {
+              "text": "Calculate two-sided p=0.08012, do not reject at 5%, and explain why data-dependent tail choice changes the procedure.",
+              "marks": 2,
+              "taughtIn": [
+                "test-hypotheses",
+                "two-sided"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "after": "test-full",
+        "block": {
+          "id": "test-transfer",
+          "type": "question",
+          "prompt": "A manager reduces α from 5% to 1% but keeps the sample size fixed. Explain the likely tradeoff at a given alternative mean, then suggest how to improve detection without returning to a 5% false-alarm rate.",
+          "solution": "A smaller α moves the upper critical cutoff outward, reducing Type I error but also reducing power at a given upper alternative. Increasing a valid independent sample size reduces the standard error and can improve power while retaining α=1%. Neither choice repairs an invalid sampling model.",
+          "taughtIn": [
+            "test-rule",
+            "test-errors",
+            "two-sided",
+            "power-worlds",
+            "power-calculation",
+            "power-tradeoff"
+          ],
+          "objectives": [
+            "3.3.1.normal-test",
+            "3.3.2.normal-known"
+          ],
+          "questionKind": "written",
+          "rubric": [
+            {
+              "text": "Explain how a lower α changes the cutoff and Type I error.",
+              "marks": 2,
+              "taughtIn": [
+                "test-rule",
+                "test-errors",
+                "power-tradeoff"
+              ]
+            },
+            {
+              "text": "Explain the resulting power/Type II tradeoff at a fixed alternative.",
+              "marks": 2,
+              "taughtIn": [
+                "test-errors",
+                "power-tradeoff"
+              ]
+            },
+            {
+              "text": "Connect a larger valid sample to smaller standard error and improved power.",
+              "marks": 2,
+              "taughtIn": [
+                "test-errors",
+                "test-stat",
+                "power-tradeoff"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "after": "test-transfer",
+        "block": {
+          "id": "testing-readiness",
+          "type": "callout",
+          "title": "Choose a repair, then retry",
+          "tone": "idea",
+          "text": "If you divided the observed difference by σ instead of σ/√n, revisit the worked test. If you treated p as the probability of H₀, return to the definition of the null tail in “Write down the question first”. If changing an alternative mean changed your p-value, return to “One fixed rule, evaluated in two worlds”: power and observed evidence use different inputs. Retry without feedback: for reference 50, σ=12, n=36 and observed mean 52, z=1 and Φ(1)=0.84134; explain why the upper p is 0.15866 and the two-sided p is 0.31732, both insufficient at 5%. Explain the conditioning, rather than copying a decision."
+        }
+      }
+    ]
+  },
+  {
+    "id": "confidence-intervals",
+    "minutes": 25,
+    "coverage": [
+      {
+        "objective": "3.2.1",
+        "teaching": [
+          "ci-model",
+          "ci-misconception"
+        ],
+        "practice": [
+          "ci-interpret",
+          "ci-transfer"
+        ]
+      },
+      {
+        "objective": "3.2.2.normal-known",
+        "teaching": [
+          "ci-pivot",
+          "ci-derivation"
+        ],
+        "practice": [
+          "ci-calculate",
+          "ci-reconstruct"
+        ]
+      },
+      {
+        "objective": "3.2.3.mean-known",
+        "teaching": [
+          "ci-formula",
+          "ci-example",
+          "ci-width"
+        ],
+        "practice": [
+          "ci-calculate",
+          "ci-transfer"
+        ]
+      }
+    ],
+    "changes": [
+      {
+        "after": "ci-transfer",
+        "block": {
+          "id": "ci-readiness",
+          "type": "callout",
+          "title": "Choose a repair, then retry",
+          "tone": "idea",
+          "text": "If you described 95% of individual costs, return to “Where the 95% belongs”. If you assigned 95% frequentist probability to the fixed mean after observing endpoints, revisit the random-endpoint derivation and coverage lab. If higher confidence made your interval narrower, revisit “Coverage and precision answer different questions”. Retry without the displayed formula: independent normal data have known σ=10, n=25 and observed mean 50. Using z=1.96 gives SE=2 and interval [46.08,53.92]. Explain why quadrupling n halves the width while leaving the model’s nominal coverage at 95%. Reading these endpoints is not evidence that you can reconstruct their derivation."
+        }
+      }
+    ]
+  }
+]

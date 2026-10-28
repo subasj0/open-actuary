@@ -1,0 +1,68 @@
+{
+  "checked": "2026-10-28",
+  "tests": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "elapsedMs": 425,
+      "bytes": 29
+    },
+    {
+      "path": "/api/courses",
+      "status": 200,
+      "elapsedMs": 9906,
+      "bytes": 5781
+    },
+    {
+      "path": "/api/course/cs1-inference",
+      "status": 200,
+      "elapsedMs": 366,
+      "bytes": 7456
+    },
+    {
+      "path": "/api/lesson/sampling-means",
+      "status": 200,
+      "elapsedMs": 249,
+      "bytes": 42190
+    },
+    {
+      "path": "/api/lesson/cs2-2019-robot-paths-2710",
+      "status": 200,
+      "elapsedMs": 374,
+      "bytes": 57521
+    },
+    {
+      "path": "/api/search?q=variance",
+      "status": 200,
+      "elapsedMs": 278,
+      "bytes": 499
+    }
+  ],
+  "note": "Single-client smoke observations, not a load test or latency guarantee.",
+  "catalogFollowup": [
+    {
+      "status": 200,
+      "elapsedMs": 637
+    },
+    {
+      "status": 200,
+      "elapsedMs": 169
+    },
+    {
+      "status": 200,
+      "elapsedMs": 206
+    },
+    {
+      "status": 200,
+      "elapsedMs": 120
+    },
+    {
+      "status": 200,
+      "elapsedMs": 146
+    },
+    {
+      "status": 200,
+      "elapsedMs": 150
+    }
+  ]
+}

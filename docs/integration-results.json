@@ -1,0 +1,16 @@
+{
+  "base": "http://127.0.0.1:8787",
+  "date": "2026-10-28",
+  "passed": [
+    "owner session and anonymous distinction",
+    "new content stays draft; author and same-origin write restrictions hold",
+    "publication requires exact review and published parent outline",
+    "draft changes preserve live content AND its original review; stale save rejected",
+    "simultaneous writers do not overwrite; immutable history and restore preserve live snapshot",
+    "portable import is draft-only and never silently overwrites or inherits approval",
+    "learning records persist and require signed-in identity",
+    "unpublished course also hides its lessons from public reads"
+  ],
+  "fixtureCourse": "qa-course-f236c5dc",
+  "fixtureState": "unpublished local test records retained as drafts"
+}

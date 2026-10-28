@@ -1,0 +1,11 @@
+CREATE TABLE users(id TEXT PRIMARY KEY, name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'reader', recovery_hash TEXT);
+CREATE TABLE passkeys(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),public_key TEXT NOT NULL,counter INTEGER NOT NULL,transports TEXT);
+CREATE INDEX passkeys_user ON passkeys(user_id);
+CREATE TABLE sessions(hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),expires INTEGER NOT NULL);
+CREATE INDEX sessions_expiry ON sessions(expires);
+CREATE TABLE challenges(id TEXT PRIMARY KEY,data TEXT NOT NULL,expires INTEGER NOT NULL);
+CREATE TABLE oauth_clients(id TEXT PRIMARY KEY,name TEXT NOT NULL,redirect_uris TEXT NOT NULL);
+CREATE TABLE oauth_codes(hash TEXT PRIMARY KEY,user_id TEXT NOT NULL,client_id TEXT NOT NULL,redirect_uri TEXT NOT NULL,challenge TEXT NOT NULL,resource TEXT NOT NULL,expires INTEGER NOT NULL);
+CREATE TABLE oauth_tokens(hash TEXT PRIMARY KEY,user_id TEXT NOT NULL,client_id TEXT NOT NULL,resource TEXT NOT NULL,expires INTEGER NOT NULL);
+CREATE TABLE author_invites(hash TEXT PRIMARY KEY);
+CREATE TABLE rate_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,expires INTEGER NOT NULL);

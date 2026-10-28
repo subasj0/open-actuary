@@ -1,0 +1,1244 @@
+[
+  {
+    "id": "cs2-2019-paths-and-products-2710",
+    "kind": "course",
+    "courseId": "cs2-2019-paths-and-products-2710",
+    "draft": {
+      "id": "cs2-2019-paths-and-products-2710",
+      "title": "Paths into probabilities: a bounded CS2 unit",
+      "subject": "CS2 Risk Modelling and Survival Analysis \u2014 finite-state chains",
+      "edition": "Supplied historical 2019 syllabus brief; bounded authoring trial",
+      "description": "An original learning unit connecting conditional paths to matrix products for daily finite-state homogeneous Markov chains.",
+      "scopeNote": "Covers 3.2.1 and the stated simple finite-state path-splitting scope of 3.2.2 in the supplied 2019 brief. Not a current or comprehensive CS2 course. Stationarity, experience rating, continuous time and simulation deferred.",
+      "objectives": [
+        {
+          "id": "3.2.1",
+          "description": "State the essential features of a Markov chain model."
+        },
+        {
+          "id": "3.2.2",
+          "description": "State the Chapman\u2013Kolmogorov relations and apply their path-splitting meaning in a simple finite-state case; bounded here to one-/two-step calculations."
+        }
+      ],
+      "chapters": [
+        {
+          "id": "conditional-paths-2710",
+          "title": "Conditional paths and matrix products",
+          "lessonIds": [
+            "cs2-2019-robot-paths-2710"
+          ]
+        }
+      ]
+    },
+    "revision": 1,
+    "published": {
+      "id": "cs2-2019-paths-and-products-2710",
+      "title": "Paths into probabilities: a bounded CS2 unit",
+      "subject": "CS2 Risk Modelling and Survival Analysis \u2014 finite-state chains",
+      "edition": "Supplied historical 2019 syllabus brief; bounded authoring trial",
+      "description": "An original learning unit connecting conditional paths to matrix products for daily finite-state homogeneous Markov chains.",
+      "scopeNote": "Covers 3.2.1 and the stated simple finite-state path-splitting scope of 3.2.2 in the supplied 2019 brief. Not a current or comprehensive CS2 course. Stationarity, experience rating, continuous time and simulation deferred.",
+      "objectives": [
+        {
+          "id": "3.2.1",
+          "description": "State the essential features of a Markov chain model."
+        },
+        {
+          "id": "3.2.2",
+          "description": "State the Chapman\u2013Kolmogorov relations and apply their path-splitting meaning in a simple finite-state case; bounded here to one-/two-step calculations."
+        }
+      ],
+      "chapters": [
+        {
+          "id": "conditional-paths-2710",
+          "title": "Conditional paths and matrix products",
+          "lessonIds": [
+            "cs2-2019-robot-paths-2710"
+          ]
+        }
+      ]
+    },
+    "publishedRevision": 1,
+    "publishedReview": {
+      "revision": 1,
+      "reviewer": "AI author/reviewer passes plus root browser and mathematical verification \u2014 pilot only",
+      "level": "pilot",
+      "checks": {
+        "technical": "Independent exact-rational review and retest confirmed path sums, P\u00b2/Q\u00b2, q endpoints, C-K interpretation and all solutions; embedded script checked across90 cases.",
+        "pedagogy": "Independent review/retest resolved assessment gaps; derivations/relations are now independently elicited, every substantive criterion taught earlier, rubrics attainable. Historical scope is bounded.",
+        "interaction": "Root exercised actual sandbox frame: .5000 at q=.4 and .6500 at .9 for A\u2192A; reset A\u2192C=.1400. Keyboard Home/End and mobile path tables work.",
+        "accessibility": "Root checked390px mobile width/navigation, keyboard range controls, explicit custom slider name, readable alternatives and tables. No screen-reader or broad assistive-technology audit; pilot status.",
+        "originality": "Original prose, examples, questions and code designed from declared2019 syllabus atoms; no supplied reference-book passages/assets copied. Independent external originality certification not performed."
+      },
+      "unresolved": [],
+      "createdAt": "2026-10-27T14:15:46.304Z"
+    },
+    "review": {
+      "revision": 1,
+      "reviewer": "AI author/reviewer passes plus root browser and mathematical verification \u2014 pilot only",
+      "level": "pilot",
+      "checks": {
+        "technical": "Independent exact-rational review and retest confirmed path sums, P\u00b2/Q\u00b2, q endpoints, C-K interpretation and all solutions; embedded script checked across90 cases.",
+        "pedagogy": "Independent review/retest resolved assessment gaps; derivations/relations are now independently elicited, every substantive criterion taught earlier, rubrics attainable. Historical scope is bounded.",
+        "interaction": "Root exercised actual sandbox frame: .5000 at q=.4 and .6500 at .9 for A\u2192A; reset A\u2192C=.1400. Keyboard Home/End and mobile path tables work.",
+        "accessibility": "Root checked390px mobile width/navigation, keyboard range controls, explicit custom slider name, readable alternatives and tables. No screen-reader or broad assistive-technology audit; pilot status.",
+        "originality": "Original prose, examples, questions and code designed from declared2019 syllabus atoms; no supplied reference-book passages/assets copied. Independent external originality certification not performed."
+      },
+      "unresolved": [],
+      "createdAt": "2026-10-27T14:15:46.304Z"
+    },
+    "updatedAt": "2026-10-28T02:43:26.901Z"
+  },
+  {
+    "id": "cs2-2019-robot-paths-2710",
+    "courseId": "cs2-2019-paths-and-products-2710",
+    "kind": "lesson",
+    "revision": 2,
+    "publishedRevision": 2,
+    "draft": {
+      "id": "cs2-2019-robot-paths-2710",
+      "courseId": "cs2-2019-paths-and-products-2710",
+      "title": "Tomorrow is the bridge: Markov paths and matrix products",
+      "subtitle": "Finite-state, discrete-time, homogeneous models; historical 2019 CS2 scope",
+      "minutes": 40,
+      "prerequisites": [
+        "Conditional probability, the multiplication rule and the law of total probability for a finite partition.",
+        "Elementary row-by-column matrix multiplication, including the identity matrix."
+      ],
+      "outcomes": [
+        "Specify states, daily time index, Markov property, homogeneity and initial information.",
+        "Read and check a row transition matrix without imposing unit column sums.",
+        "State Chapman\u2013Kolmogorov and explain its conditional path split.",
+        "Compute and interpret two-step probabilities through all intermediate states."
+      ],
+      "objectiveIds": [
+        "3.2.1",
+        "3.2.2"
+      ],
+      "scopeNote": "Covers 3.2.1 and the stated simple finite-state path-splitting scope of 3.2.2 in the supplied 2019 brief. Not a current or comprehensive CS2 course. Stationarity, experience rating, continuous time and simulation deferred.",
+      "blocks": [
+        {
+          "id": "opening",
+          "type": "prose",
+          "text": "A service robot is inspected at the end of each day. Tomorrow it may be available, charging or under repair. Operations staff ask a deceptively simple question: if it is available today, what is the chance it is under repair two days from now? A one-day table cannot answer that by selecting one entry. We must account for all possible states tomorrow.\n\nThis unit develops that argument twice: first as conditional paths, then as matrix multiplication. You will specify a finite-state Markov chain, distinguish its assumptions, and explain why adding products of one-step probabilities gives a two-step probability. The setting and numbers are invented teaching data, not observations or operational advice. The claimed alignment is limited to the supplied historical 2019 CS2 objectives 3.2.1 and the finite-state one-/two-step part of 3.2.2."
+        },
+        {
+          "id": "states",
+          "type": "heading",
+          "text": "From an observation history to a model",
+          "level": 2
+        },
+        {
+          "id": "model",
+          "type": "prose",
+          "objectives": [
+            "3.2.1"
+          ],
+          "text": "Let $X_t$ denote the robot\u2019s state at the end of day $t$, where $t=0,1,2,\\ldots$. This is a random variable before we observe it. A realised observation such as $X_0=A$ is a condition on our calculation. The state space is the finite set $S=\\{A,B,C\\}$: A means available, B means charging, and C means under repair. These categories must be mutually exclusive and exhaustive at each observation time; otherwise a row cannot represent a complete distribution over tomorrow\u2019s state.\n\nA discrete-time chain describes transitions between these daily observations. It says nothing about unobserved movements within a day. A robot recorded as A on consecutive days might have charged between observations. Likewise, a return to A after two steps need not mean it remained A throughout.\n\nThe Markov assumption says that, conditional on the present state, earlier recorded states give no further information about the next state. It is a property of the conditional distribution, not a claim that successive states are independent. Knowing that a robot is under repair can strongly affect tomorrow\u2019s distribution. It is the additional history, after that present state is known, which the model discards."
+        },
+        {
+          "id": "markov",
+          "type": "math",
+          "objectives": [
+            "3.2.1"
+          ],
+          "tex": "\\Pr(X_{t+1}=j\\mid X_t=i,X_{t-1}=i_{t-1},\\ldots,X_0=i_0)=\\Pr(X_{t+1}=j\\mid X_t=i)=p_{ij}",
+          "explanation": "For states i and j in S and a conditioning history of positive probability, the next-state distribution depends only on i. In our homogeneous model p_ij also does not depend on day t. Each p_ij is a dimensionless one-day transition probability, not a transition intensity."
+        },
+        {
+          "id": "assumptions",
+          "type": "prose",
+          "objectives": [
+            "3.2.1"
+          ],
+          "text": "Time homogeneity is an additional assumption: the same transition probabilities apply on every day. A Markov model need not be homogeneous. Here we deliberately impose both properties, so we can reuse a single matrix. If a maintenance programme changes next week\u2019s transitions, using today\u2019s matrix twice would require a new justification.\n\nThe state description must be rich enough for the Markov assumption to be credible. Suppose the chance of finishing a repair depends on how many days the robot has already spent in C. If that duration affects tomorrow even after we know today is C, this three-state model fails the Markov assumption. One possible repair is to split C by elapsed repair duration, then reassess the assumption. Calling an arbitrary sequence a chain does not make its states adequate.\n\nA complete model also specifies an initial distribution. Write $\\alpha_i=\\Pr(X_0=i)$; the non-negative components sum to one. An initial state known to be A is the special case $\\alpha=(1,0,0)$. For the first calculation we condition on that known state rather than treating it as another uncertain transition."
+        },
+        {
+          "id": "matrix",
+          "type": "table",
+          "objectives": [
+            "3.2.1",
+            "3.2.2"
+          ],
+          "title": "One-day matrix P: rows are today; columns are tomorrow",
+          "headers": [
+            "From / to",
+            "A: available",
+            "B: charging",
+            "C: repair"
+          ],
+          "rows": [
+            [
+              "A",
+              "0.60",
+              "0.30",
+              "0.10"
+            ],
+            [
+              "B",
+              "0.40",
+              "0.50",
+              "0.10"
+            ],
+            [
+              "C",
+              "0.20",
+              "0.30",
+              "0.50"
+            ]
+          ]
+        },
+        {
+          "id": "read-matrix",
+          "type": "prose",
+          "objectives": [
+            "3.2.1",
+            "3.2.2"
+          ],
+          "text": "Read across a row to obtain a conditional distribution. For example, $p_{BC}=0.10$ means a 0.10 probability of C tomorrow given B today. Every entry is non-negative and every row sums to one. Columns need not sum to one: the A column sums to 1.20, but those entries condition on different starting states and are not mutually exclusive pieces of one distribution.\n\nA diagonal entry such as $p_{AA}=0.60$ is a legitimate one-step self-transition. A zero entry, if one were present, would mean that particular one-step transition is impossible under the model; it would not automatically forbid reaching the destination in two steps. With row-vector convention, the next-day distribution is $\\alpha P$: its jth component adds $\\alpha_i p_{ij}$ over starting states i. This convention fixes which way to multiply."
+        },
+        {
+          "id": "paths-heading",
+          "type": "heading",
+          "text": "Split the future at tomorrow",
+          "level": 2
+        },
+        {
+          "id": "split",
+          "type": "prose",
+          "objectives": [
+            "3.2.2"
+          ],
+          "text": "We want $\\Pr(X_2=C\\mid X_0=A)$. Tomorrow must be exactly one of A, B or C. Those events form a partition, so the law of total probability lets us add their contributions. On the path A\u2192B\u2192C, the multiplication rule first gives the probability of B tomorrow times the conditional probability of C the following day. The Markov assumption removes the earlier A from that second conditional probability; homogeneity identifies it with the same B-to-C entry used on any day.\n\nThus the probability of the path is $p_{AB}p_{BC}$, not $p_{AB}+p_{BC}$. We multiply along a path because both stages must happen. We add across the three paths because their intermediate states are mutually exclusive. Multiplying does not assume the two transitions are independent: the second probability is explicitly conditional on the intermediate state."
+        },
+        {
+          "id": "worked",
+          "type": "worked",
+          "objectives": [
+            "3.2.2"
+          ],
+          "title": "Available today, under repair in two days",
+          "steps": [
+            {
+              "title": "Partition at day 1",
+              "text": "The possible paths are A\u2192A\u2192C, A\u2192B\u2192C and A\u2192C\u2192C.",
+              "why": "Exactly one intermediate state occurs, so these paths cannot overlap."
+            },
+            {
+              "title": "Multiply along each path",
+              "text": "Their probabilities are 0.60\u00d70.10=0.06, 0.30\u00d70.10=0.03 and 0.10\u00d70.50=0.05.",
+              "why": "Each product is the joint conditional probability of its two stages."
+            },
+            {
+              "title": "Add and interpret",
+              "text": "The total is 0.06+0.03+0.05=0.14. This includes robots entering repair tomorrow and remaining there, and robots entering repair only on the second day.",
+              "why": "The event concerns the state at day 2, not first entry into repair."
+            }
+          ]
+        },
+        {
+          "id": "ck",
+          "type": "math",
+          "objectives": [
+            "3.2.2"
+          ],
+          "tex": "p^{(m+n)}_{ij}=\\sum_{k\\in S}p^{(m)}_{ik}p^{(n)}_{kj},\\qquad P^{(m+n)}=P^{(m)}P^{(n)},\\qquad P^{(0)}=I.",
+          "explanation": "The Chapman\u2013Kolmogorov relation splits m+n steps after m steps at an intermediate state k. Here p^(r)_ij means the probability of j after r steps given i now; r,m,n are non-negative integers. In a homogeneous chain P^(r)=P^r. The zero-step matrix I leaves the current state unchanged. Our calculations use only m=n=1; longer-horizon computations are outside this unit."
+        },
+        {
+          "id": "products",
+          "type": "prose",
+          "objectives": [
+            "3.2.2"
+          ],
+          "text": "For two steps, the matrix rule is precisely the path rule: select row i of P and column j of P, multiply matching entries indexed by k, then add. Row i lists probabilities of arriving at each intermediate state; column j lists the chance of reaching j from each such state. Pairing row i with row j instead would describe the wrong conditional events. The symbol $p^{(2)}_{ij}$ means an entry of $P^2$, not the square of the single entry $p_{ij}$.\n\nA useful check comes from summing over destinations. Each intermediate row sums to one, so $\\sum_j\\sum_k p_{ik}p_{kj}=\\sum_k p_{ik}=1$. Therefore each row of $P^2$ is again a distribution. This catches many arithmetic errors, but does not prove every entry correct: several wrong entries could still sum to one."
+        },
+        {
+          "id": "experiment",
+          "type": "widget",
+          "objectives": [
+            "3.2.2"
+          ],
+          "title": "Construct a two-day probability",
+          "height": 950,
+          "purpose": "Connect each matching row/column pair to a conditional path and investigate an invariant.",
+          "prediction": "With start A and destination C, predict whether moving probability from B\u2192B to B\u2192A changes the two-day answer. Then choose B\u2192A and predict whether the answer is the same at q=0 and q=0.90.",
+          "debrief": "A\u2192C stays 0.14 because only the B row changes, its C entry stays 0.10, and the A starting row stays fixed. B\u2192A does change: its first-step row and its second-step column both involve q. The widget computes the sum exactly up to decimal floating-point display, not a simulation estimate.",
+          "fallback": "At q=0.40, P\u00b2 rows are A: (0.50,0.36,0.14); B: (0.46,0.40,0.14); C: (0.34,0.36,0.30). A\u2192C paths contribute 0.06,0.03,0.05. At q=0 and q=0.90, B\u2192A totals are 0.02 and 0.56 respectively. All three paths remain in the sum even when a factor is zero.",
+          "transfer": "Without controls, explain why C\u2192C is also unaffected by q, but A\u2192A changes. Check your reasoning with a row/column path expression.",
+          "checks": [
+            "Default A\u2192C gives contributions 0.06, 0.03, 0.05 and total 0.14.",
+            "For B\u2192A q=0 gives 0.02 and q=0.90 gives 0.56; all rows remain stochastic.",
+            "A\u2192C and C\u2192C are invariant as q varies.",
+            "Reset restores A,C,q=0.40; repeated selection remains deterministic.",
+            "Invalid state or q displays an error while the readable alternative remains available.",
+            "Browser checks pending: native keyboard controls and visible focus, 320px width, iframe console, reduced motion, no-script reading and host state bridge."
+          ],
+          "html": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><style>body{font:16px/1.45 system-ui,sans-serif;margin:16px;color:#162c3b;background:#fff}h2{font-size:1.2rem}label{display:block;margin:10px 0}select,input,button{font:inherit;padding:6px;max-width:100%}button{border:2px solid #345;padding:8px;background:#eef5f8}*:focus-visible{outline:3px solid #a24012;outline-offset:3px}table{border-collapse:collapse;width:100%;margin:12px 0;font-variant-numeric:tabular-nums}th,td{border:1px solid #aab7c0;padding:7px;text-align:left}caption{text-align:left;font-weight:700}.chosen{font-weight:bold;background:#e5f0f5}#result{padding:10px;border-left:4px solid #345}small{display:block}#error{color:#8a2100}@media(max-width:420px){body{margin:8px;font-size:14px}th,td{padding:4px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head><body><h2>Three paths, one matrix entry</h2><p>Analytic model; no simulated robots. Predict the two-day chance before changing a control. Rows mean today; columns mean tomorrow.</p><label>Starting state <select id=\"start\"><option value=\"0\">A \u2014 available</option><option value=\"1\">B \u2014 charging</option><option value=\"2\">C \u2014 repair</option></select></label><label>Destination after two days <select id=\"end\"><option value=\"0\">A \u2014 available</option><option value=\"1\">B \u2014 charging</option><option value=\"2\" selected>C \u2014 repair</option></select></label><label>B\u2192A probability q: <output id=\"qvalue\">0.40</output><input id=\"q\" type=\"range\" aria-label=\"B to A transition probability\" min=\"0\" max=\"0.9\" step=\"0.1\" value=\"0.4\"></label><small>B\u2192C stays 0.10; B\u2192B becomes 0.90\u2212q. Other rows stay fixed. All rows always sum to one.</small><button id=\"reset\" type=\"button\">Reset to A\u2192C, q=0.40</button><div id=\"matrix\"></div><div id=\"paths\"></div><p id=\"result\" role=\"status\" aria-live=\"polite\"></p><p id=\"error\" role=\"alert\"></p><details><summary>Readable alternative and explanation</summary><p>At q=0.40, A\u2192C in two days has contributions via A: 0.60\u00d70.10=0.06; via B: 0.30\u00d70.10=0.03; via C: 0.10\u00d70.50=0.05. Sum 0.14. Changing q cannot alter this A\u2192C total because B\u2192C remains 0.10. For B\u2192A, totals are 0.02 at q=0 and 0.56 at q=0.90. The two-step total uses three mutually exclusive intermediate states, even if one contribution is zero.</p></details><noscript><p>Controls need JavaScript; use the readable alternative above and the lesson\u2019s full matrix calculation.</p></noscript><script>\n(function(){'use strict';\nconst names=['A','B','C']; const el=id=>document.getElementById(id);\nfunction compute(q,i,j){const P=[[.6,.3,.1],[q,.9-q,.1],[.2,.3,.5]]; const terms=P[i].map((v,k)=>v*P[k][j]); return {P,terms,total:terms.reduce((a,b)=>a+b,0)};}\nfunction render(){try{const raw=Number(el('q').value); if(!Number.isFinite(raw)||raw<0||raw>.9)throw Error('Choose q between 0 and 0.90.'); const i=Number(el('start').value),j=Number(el('end').value);if(![0,1,2].includes(i)||![0,1,2].includes(j))throw Error('Choose one of the three named states.');const {P,terms,total}=compute(raw,i,j); el('qvalue').textContent=raw.toFixed(2);\nel('matrix').innerHTML='<table><caption>P: selected row '+names[i]+' and column '+names[j]+' are marked by text</caption><thead><tr><th>From / to</th>'+names.map((n,k)=>'<th>'+n+(k===j?' [column]':'')+'</th>').join('')+'</tr></thead><tbody>'+P.map((r,k)=>'<tr><th>'+names[k]+(k===i?' [row]':'')+'</th>'+r.map((v,l)=>'<td'+(k===i||l===j?' class=\"chosen\"':'')+'>'+v.toFixed(2)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';\nel('paths').innerHTML='<table><caption>Multiply along each path; add down the contributions</caption><thead><tr><th>Path</th><th>Row \u00d7 column</th><th>Contribution</th></tr></thead><tbody>'+terms.map((v,k)=>'<tr><th>'+names[i]+' \u2192 '+names[k]+' \u2192 '+names[j]+'</th><td>'+P[i][k].toFixed(2)+' \u00d7 '+P[k][j].toFixed(2)+'</td><td>'+v.toFixed(4)+'</td></tr>').join('')+'</tbody></table>';\nel('result').textContent='P\u00b2['+names[i]+','+names[j]+'] = '+terms.map(v=>v.toFixed(4)).join(' + ')+' = '+total.toFixed(4)+'. This is the two-day probability.';el('error').textContent=''; if(window.lessonBridge&&typeof window.lessonBridge.reportState==='function')window.lessonBridge.reportState({start:names[i],destination:names[j],q:raw,contributions:terms,total});\n}catch(e){el('error').textContent='The calculation could not update: '+e.message+' Use the readable alternative below.';}}\n['start','end'].forEach(id=>el(id).addEventListener('change',render));el('q').addEventListener('input',render);el('reset').addEventListener('click',()=>{el('start').value='0';el('end').value='2';el('q').value='0.4';render();});render();\n})();</script></body></html>"
+        },
+        {
+          "id": "transfer-teaching",
+          "type": "prose",
+          "objectives": [
+            "3.2.2"
+          ],
+          "text": "The experiment changes one conditional distribution while preserving its total. Do not infer that every destination must respond. For A\u2192C, both the first-step A row and the second-step C column are unchanged. For C\u2192C, the same argument uses the C row and C column. For A\u2192A, the path through B contains $0.30q$, so the total changes. A causal explanation in terms of paths is stronger than reporting what a slider appeared to do.\n\nWhen using a transition matrix, first identify the time horizon and starting information. Then state the conditioning, select the intermediate partition, and only then calculate. The checks are equally specific: non-negative entries and unit row sums establish a valid probability table; checking an individual path establishes the intended event; summing the final row checks the distribution. None alone establishes that the real robot\u2019s behaviour is Markov or homogeneous."
+        },
+        {
+          "id": "practice-heading",
+          "type": "heading",
+          "text": "Independent practice: attempt before revealing feedback",
+          "level": 2
+        },
+        {
+          "id": "q-features",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.1"
+          ],
+          "prompt": "A fleet analyst says: \u201cThe table is Markov because every row sums to one. If repair duration affects tomorrow, it still works because C means repair.\u201d Specify the discrete observation times and the mutually exclusive, exhaustive state set for this robot model. Explain the Markov and homogeneity assumptions, diagnose the duration issue, propose a possible repair to the state description, and state the initial information required for an unconditional forecast. [7 marks]",
+          "taughtIn": [
+            "model",
+            "markov",
+            "assumptions",
+            "read-matrix"
+          ],
+          "hints": [
+            "Row sums check a distribution, not its adequacy for representing a history."
+          ],
+          "solution": "[1] Observe at the end of each day, indexed by t=0,1,2,\u2026; X_t is the robot\u2019s state at that observation. [1] Use S={A available, B charging, C under repair}, with exactly one of these exhaustive categories assigned at each observation. [1] Markov means earlier history adds no next-state information once the current state is known. [1] Homogeneity means the transition law is constant across days; stochastic rows alone imply neither property. [1] If elapsed repair duration changes tomorrow\u2019s distribution within state C, the three-state Markov assumption fails. [1] Splitting C by duration is a possible repair to retain relevant information, subject to reassessing the Markov assumption. [1] An unconditional forecast also requires an initial distribution over A,B,C (or a known initial state as a point mass). These seven statements attain all seven distinct marks.",
+          "rubric": [
+            {
+              "text": "Specifies end-of-day discrete observations and index t=0,1,2,\u2026.",
+              "marks": 1,
+              "taughtIn": [
+                "model"
+              ]
+            },
+            {
+              "text": "Specifies A/B/C meanings as mutually exclusive and exhaustive states.",
+              "marks": 1,
+              "taughtIn": [
+                "model"
+              ]
+            },
+            {
+              "text": "States the conditional-history Markov property.",
+              "marks": 1,
+              "taughtIn": [
+                "model",
+                "markov"
+              ]
+            },
+            {
+              "text": "Distinguishes time homogeneity from stochastic row sums.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions",
+                "read-matrix"
+              ]
+            },
+            {
+              "text": "Explains why duration is relevant omitted history.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions"
+              ]
+            },
+            {
+              "text": "Suggests enriched states and reassessment.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions"
+              ]
+            },
+            {
+              "text": "Requires initial distribution or specified initial state.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-ck-statement",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "For a finite-state homogeneous Markov chain, state the Chapman\u2013Kolmogorov relation in indexed probability form. Define its notation and index domains, name the assumptions used, and explain why splitting at the intermediate time produces a sum of conditional products. Give the matrix form and zero-step convention. You need not calculate any horizon longer than two steps. [7 marks]",
+          "taughtIn": [
+            "model",
+            "markov",
+            "assumptions",
+            "split",
+            "ck",
+            "products"
+          ],
+          "hints": [
+            "Which mutually exclusive events describe the state at the splitting time? Explain the multiplication rule without assuming independent transitions."
+          ],
+          "solution": "[1] The relation is p^(m+n)_ij = \u03a3_{k\u2208S} p^(m)_ik p^(n)_kj. [1] Here p^(r)_ij=Pr(X_(t+r)=j | X_t=i), i,j,k\u2208S, and r,m,n,t are non-negative integers; homogeneity removes dependence on t. [1] The model is Markov and time homogeneous, with conditioning on possible starting states/histories. [1] The events X_(t+m)=k, k\u2208S, partition the intermediate state: exactly one occurs, so total probability adds their contributions. [1] Within each contribution, the multiplication rule gives the chance of reaching k times the conditional chance of reaching j; Markov removes earlier history and homogeneity identifies the latter factor as p^(n)_kj. This is not unconditional independence. [1] In matrix form P^(m+n)=P^(m)P^(n). [1] P^(0)=I, since zero steps leave the state unchanged (and in the homogeneous model P^(r)=P^r). These seven distinct statements attain 7/7. The formula is stated generally; all required numerical applications in this unit remain one/two steps.",
+          "rubric": [
+            {
+              "text": "States the indexed sum over intermediate states correctly.",
+              "marks": 1,
+              "taughtIn": [
+                "ck"
+              ]
+            },
+            {
+              "text": "Defines the r-step conditional probability and state/non-negative integer index domains.",
+              "marks": 1,
+              "taughtIn": [
+                "model",
+                "ck"
+              ]
+            },
+            {
+              "text": "States Markov and homogeneity assumptions with meaningful conditioning.",
+              "marks": 1,
+              "taughtIn": [
+                "markov",
+                "assumptions",
+                "ck"
+              ]
+            },
+            {
+              "text": "Explains the exhaustive, mutually exclusive intermediate-state partition and addition.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "ck"
+              ]
+            },
+            {
+              "text": "Explains conditional multiplication and the role of Markov/homogeneity, without asserting independence.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "States the matrix Chapman\u2013Kolmogorov form correctly.",
+              "marks": 1,
+              "taughtIn": [
+                "ck",
+                "products"
+              ]
+            },
+            {
+              "text": "States and interprets the zero-step identity convention.",
+              "marks": 1,
+              "taughtIn": [
+                "ck"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-numeric",
+          "type": "question",
+          "questionKind": "numeric",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "Use the original matrix, with q=0.40. Given C today, calculate the probability of A two days later. Enter a probability to two decimal places.",
+          "answer": 0.34,
+          "tolerance": 1e-05,
+          "taughtIn": [
+            "split",
+            "worked",
+            "ck",
+            "products"
+          ],
+          "hints": [
+            "List C\u2192A\u2192A, C\u2192B\u2192A and C\u2192C\u2192A."
+          ],
+          "solution": "The three contributions are 0.20\u00d70.60=0.12, 0.30\u00d70.40=0.12 and 0.50\u00d70.20=0.10. Add to obtain 0.34. The entry 0.20 concerns one day; squaring it gives only the wrong repeated-entry calculation, not all intermediate paths."
+        },
+        {
+          "id": "q-completion",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "Complete the original matrix\u2019s two-step row for a robot known to be B today. Show each path sum, check the row total, and explain why the B-to-B answer includes a path that leaves B. [5 marks]",
+          "taughtIn": [
+            "split",
+            "worked",
+            "ck",
+            "products"
+          ],
+          "solution": "[1] To A: 0.40\u00d70.60+0.50\u00d70.40+0.10\u00d70.20=0.46. [1] To B: 0.40\u00d70.30+0.50\u00d70.50+0.10\u00d70.30=0.40. [1] To C: 0.40\u00d70.10+0.50\u00d70.10+0.10\u00d70.50=0.14. [1] The total is 1.00 and each entry is non-negative. [1] B\u2192A\u2192B (probability 0.12) leaves B then returns; the event specifies the endpoint, not remaining B throughout. This answer earns five non-overlapping marks.",
+          "rubric": [
+            {
+              "text": "Correct A path sum and 0.46.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "Correct B path sum and 0.40.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "Correct C path sum and 0.14.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "Checks non-negativity and unit total.",
+              "marks": 1,
+              "taughtIn": [
+                "products"
+              ]
+            },
+            {
+              "text": "Explains a leave-and-return path versus endpoint event.",
+              "marks": 1,
+              "taughtIn": [
+                "model",
+                "worked"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-transfer",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "A different depot has states Open (O) and Shut (S), with row matrix Q=((0.75,0.25),(0.40,0.60)). Assume a homogeneous Markov model and a known initial state O. An analyst claims the chance of O after two days is 0.75\u00b2. Correct the claim using named paths and a matrix entry. Then explain whether observing a non-unit column sum would invalidate Q. [4 marks]",
+          "taughtIn": [
+            "read-matrix",
+            "split",
+            "ck",
+            "products"
+          ],
+          "solution": "[1] Paths are O\u2192O\u2192O and O\u2192S\u2192O. [1] Their probabilities are 0.75\u00d70.75=0.5625 and 0.25\u00d70.40=0.10. [1] Thus (Q\u00b2)OO=0.6625; the claim omitted the return path. [1] A non-unit column sum does not invalidate a row transition matrix: the rows condition on different starting states, and each row here is non-negative and sums to one. Four distinct criteria give four marks.",
+          "rubric": [
+            {
+              "text": "Names both mutually exclusive intermediate paths.",
+              "marks": 1,
+              "taughtIn": [
+                "split"
+              ]
+            },
+            {
+              "text": "Uses conditional products 0.5625 and 0.10.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "worked"
+              ]
+            },
+            {
+              "text": "Adds to 0.6625 and identifies the omitted return path as an entry of Q\u00b2.",
+              "marks": 1,
+              "taughtIn": [
+                "ck",
+                "products"
+              ]
+            },
+            {
+              "text": "Explains why column sums are not the row stochasticity condition.",
+              "marks": 1,
+              "taughtIn": [
+                "read-matrix"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-widget-transfer",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "Without the controls, use the robot matrix family B=(q,0.90\u2212q,0.10) to justify why C\u2192C in two days stays constant, and give A\u2192A as a function of q for 0\u2264q\u22640.90. [3 marks]",
+          "taughtIn": [
+            "products",
+            "experiment",
+            "transfer-teaching"
+          ],
+          "solution": "[1] C\u2192C=0.20\u00d70.10+0.30\u00d70.10+0.50\u00d70.50=0.30. [1] None of these factors changes with q: the C row and C column remain fixed. [1] A\u2192A=0.60\u00d70.60+0.30q+0.10\u00d70.20=0.38+0.30q. These three criteria give three marks.",
+          "rubric": [
+            {
+              "text": "Correct C\u2192C path calculation, 0.30.",
+              "marks": 1,
+              "taughtIn": [
+                "products",
+                "experiment"
+              ]
+            },
+            {
+              "text": "Explains the unchanged C row and C column.",
+              "marks": 1,
+              "taughtIn": [
+                "transfer-teaching"
+              ]
+            },
+            {
+              "text": "Derives 0.38+0.30q using all A\u2192A paths.",
+              "marks": 1,
+              "taughtIn": [
+                "products",
+                "transfer-teaching"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "readiness",
+          "type": "callout",
+          "title": "Use your errors to choose a return route",
+          "tone": "idea",
+          "text": "If you equated row sums with the Markov assumption, revisit \u201cFrom an observation history to a model\u201d. If you squared one entry or added along a path, revisit \u201cSplit the future at tomorrow\u201d. If you transposed the matrix or required columns to sum to one, reread the row/column conventions. Then attempt the depot problem again without revealing its feedback. Revealing a solution or moving a control is not evidence of mastery."
+        }
+      ],
+      "summary": [
+        "A row transition matrix gives next-state probabilities conditional on today.",
+        "The Markov property removes earlier history after conditioning on the present; homogeneity allows one matrix across days.",
+        "Chapman\u2013Kolmogorov splits a longer transition at an intermediate state: multiply conditional probabilities along each path and add over mutually exclusive paths.",
+        "For two steps this is row-by-column multiplication in P\u00b2, with endpoint events including leave-and-return paths."
+      ],
+      "coverage": [
+        {
+          "objective": "3.2.1",
+          "teaching": [
+            "model",
+            "markov",
+            "assumptions",
+            "matrix",
+            "read-matrix"
+          ],
+          "practice": [
+            "q-features"
+          ],
+          "note": "Essential model features taught within the finite-state homogeneous daily scope."
+        },
+        {
+          "objective": "3.2.2",
+          "teaching": [
+            "split",
+            "worked",
+            "ck",
+            "products",
+            "experiment",
+            "transfer-teaching"
+          ],
+          "practice": [
+            "q-ck-statement",
+            "q-numeric",
+            "q-completion",
+            "q-transfer",
+            "q-widget-transfer"
+          ],
+          "note": "General relation, notation, assumptions and intermediate-state meaning independently elicited; numerical applications bounded to one-/two-step finite-state calculations. No claim of full wider exam coverage."
+        }
+      ],
+      "provenance": "Original prose, fictional robot/depot contexts, matrices, questions and self-contained widget authored for this trial. Inputs restricted to the author skill, its workflow/teaching/interaction references and supplied paraphrased 2019 syllabus. No source books, extracted text, prior outputs or diagnoses consulted.",
+      "technicalNotes": [
+        "Offline portable draft only. No upload, online preview, browser verification, student pilot or expert review claimed. Arithmetic and widget script checks are recorded separately in verification.md. Exact analytic probabilities are displayed to four decimals; the controls change a stated model family rather than simulate data."
+      ]
+    },
+    "published": {
+      "id": "cs2-2019-robot-paths-2710",
+      "courseId": "cs2-2019-paths-and-products-2710",
+      "title": "Tomorrow is the bridge: Markov paths and matrix products",
+      "subtitle": "Finite-state, discrete-time, homogeneous models; historical 2019 CS2 scope",
+      "minutes": 40,
+      "prerequisites": [
+        "Conditional probability, the multiplication rule and the law of total probability for a finite partition.",
+        "Elementary row-by-column matrix multiplication, including the identity matrix."
+      ],
+      "outcomes": [
+        "Specify states, daily time index, Markov property, homogeneity and initial information.",
+        "Read and check a row transition matrix without imposing unit column sums.",
+        "State Chapman\u2013Kolmogorov and explain its conditional path split.",
+        "Compute and interpret two-step probabilities through all intermediate states."
+      ],
+      "objectiveIds": [
+        "3.2.1",
+        "3.2.2"
+      ],
+      "scopeNote": "Covers 3.2.1 and the stated simple finite-state path-splitting scope of 3.2.2 in the supplied 2019 brief. Not a current or comprehensive CS2 course. Stationarity, experience rating, continuous time and simulation deferred.",
+      "blocks": [
+        {
+          "id": "opening",
+          "type": "prose",
+          "text": "A service robot is inspected at the end of each day. Tomorrow it may be available, charging or under repair. Operations staff ask a deceptively simple question: if it is available today, what is the chance it is under repair two days from now? A one-day table cannot answer that by selecting one entry. We must account for all possible states tomorrow.\n\nThis unit develops that argument twice: first as conditional paths, then as matrix multiplication. You will specify a finite-state Markov chain, distinguish its assumptions, and explain why adding products of one-step probabilities gives a two-step probability. The setting and numbers are invented teaching data, not observations or operational advice. The claimed alignment is limited to the supplied historical 2019 CS2 objectives 3.2.1 and the finite-state one-/two-step part of 3.2.2."
+        },
+        {
+          "id": "states",
+          "type": "heading",
+          "text": "From an observation history to a model",
+          "level": 2
+        },
+        {
+          "id": "model",
+          "type": "prose",
+          "objectives": [
+            "3.2.1"
+          ],
+          "text": "Let $X_t$ denote the robot\u2019s state at the end of day $t$, where $t=0,1,2,\\ldots$. This is a random variable before we observe it. A realised observation such as $X_0=A$ is a condition on our calculation. The state space is the finite set $S=\\{A,B,C\\}$: A means available, B means charging, and C means under repair. These categories must be mutually exclusive and exhaustive at each observation time; otherwise a row cannot represent a complete distribution over tomorrow\u2019s state.\n\nA discrete-time chain describes transitions between these daily observations. It says nothing about unobserved movements within a day. A robot recorded as A on consecutive days might have charged between observations. Likewise, a return to A after two steps need not mean it remained A throughout.\n\nThe Markov assumption says that, conditional on the present state, earlier recorded states give no further information about the next state. It is a property of the conditional distribution, not a claim that successive states are independent. Knowing that a robot is under repair can strongly affect tomorrow\u2019s distribution. It is the additional history, after that present state is known, which the model discards."
+        },
+        {
+          "id": "markov",
+          "type": "math",
+          "objectives": [
+            "3.2.1"
+          ],
+          "tex": "\\Pr(X_{t+1}=j\\mid X_t=i,X_{t-1}=i_{t-1},\\ldots,X_0=i_0)=\\Pr(X_{t+1}=j\\mid X_t=i)=p_{ij}",
+          "explanation": "For states i and j in S and a conditioning history of positive probability, the next-state distribution depends only on i. In our homogeneous model p_ij also does not depend on day t. Each p_ij is a dimensionless one-day transition probability, not a transition intensity."
+        },
+        {
+          "id": "assumptions",
+          "type": "prose",
+          "objectives": [
+            "3.2.1"
+          ],
+          "text": "Time homogeneity is an additional assumption: the same transition probabilities apply on every day. A Markov model need not be homogeneous. Here we deliberately impose both properties, so we can reuse a single matrix. If a maintenance programme changes next week\u2019s transitions, using today\u2019s matrix twice would require a new justification.\n\nThe state description must be rich enough for the Markov assumption to be credible. Suppose the chance of finishing a repair depends on how many days the robot has already spent in C. If that duration affects tomorrow even after we know today is C, this three-state model fails the Markov assumption. One possible repair is to split C by elapsed repair duration, then reassess the assumption. Calling an arbitrary sequence a chain does not make its states adequate.\n\nA complete model also specifies an initial distribution. Write $\\alpha_i=\\Pr(X_0=i)$; the non-negative components sum to one. An initial state known to be A is the special case $\\alpha=(1,0,0)$. For the first calculation we condition on that known state rather than treating it as another uncertain transition."
+        },
+        {
+          "id": "matrix",
+          "type": "table",
+          "objectives": [
+            "3.2.1",
+            "3.2.2"
+          ],
+          "title": "One-day matrix P: rows are today; columns are tomorrow",
+          "headers": [
+            "From / to",
+            "A: available",
+            "B: charging",
+            "C: repair"
+          ],
+          "rows": [
+            [
+              "A",
+              "0.60",
+              "0.30",
+              "0.10"
+            ],
+            [
+              "B",
+              "0.40",
+              "0.50",
+              "0.10"
+            ],
+            [
+              "C",
+              "0.20",
+              "0.30",
+              "0.50"
+            ]
+          ]
+        },
+        {
+          "id": "read-matrix",
+          "type": "prose",
+          "objectives": [
+            "3.2.1",
+            "3.2.2"
+          ],
+          "text": "Read across a row to obtain a conditional distribution. For example, $p_{BC}=0.10$ means a 0.10 probability of C tomorrow given B today. Every entry is non-negative and every row sums to one. Columns need not sum to one: the A column sums to 1.20, but those entries condition on different starting states and are not mutually exclusive pieces of one distribution.\n\nA diagonal entry such as $p_{AA}=0.60$ is a legitimate one-step self-transition. A zero entry, if one were present, would mean that particular one-step transition is impossible under the model; it would not automatically forbid reaching the destination in two steps. With row-vector convention, the next-day distribution is $\\alpha P$: its jth component adds $\\alpha_i p_{ij}$ over starting states i. This convention fixes which way to multiply."
+        },
+        {
+          "id": "paths-heading",
+          "type": "heading",
+          "text": "Split the future at tomorrow",
+          "level": 2
+        },
+        {
+          "id": "split",
+          "type": "prose",
+          "objectives": [
+            "3.2.2"
+          ],
+          "text": "We want $\\Pr(X_2=C\\mid X_0=A)$. Tomorrow must be exactly one of A, B or C. Those events form a partition, so the law of total probability lets us add their contributions. On the path A\u2192B\u2192C, the multiplication rule first gives the probability of B tomorrow times the conditional probability of C the following day. The Markov assumption removes the earlier A from that second conditional probability; homogeneity identifies it with the same B-to-C entry used on any day.\n\nThus the probability of the path is $p_{AB}p_{BC}$, not $p_{AB}+p_{BC}$. We multiply along a path because both stages must happen. We add across the three paths because their intermediate states are mutually exclusive. Multiplying does not assume the two transitions are independent: the second probability is explicitly conditional on the intermediate state."
+        },
+        {
+          "id": "worked",
+          "type": "worked",
+          "objectives": [
+            "3.2.2"
+          ],
+          "title": "Available today, under repair in two days",
+          "steps": [
+            {
+              "title": "Partition at day 1",
+              "text": "The possible paths are A\u2192A\u2192C, A\u2192B\u2192C and A\u2192C\u2192C.",
+              "why": "Exactly one intermediate state occurs, so these paths cannot overlap."
+            },
+            {
+              "title": "Multiply along each path",
+              "text": "Their probabilities are 0.60\u00d70.10=0.06, 0.30\u00d70.10=0.03 and 0.10\u00d70.50=0.05.",
+              "why": "Each product is the joint conditional probability of its two stages."
+            },
+            {
+              "title": "Add and interpret",
+              "text": "The total is 0.06+0.03+0.05=0.14. This includes robots entering repair tomorrow and remaining there, and robots entering repair only on the second day.",
+              "why": "The event concerns the state at day 2, not first entry into repair."
+            }
+          ]
+        },
+        {
+          "id": "ck",
+          "type": "math",
+          "objectives": [
+            "3.2.2"
+          ],
+          "tex": "p^{(m+n)}_{ij}=\\sum_{k\\in S}p^{(m)}_{ik}p^{(n)}_{kj},\\qquad P^{(m+n)}=P^{(m)}P^{(n)},\\qquad P^{(0)}=I.",
+          "explanation": "The Chapman\u2013Kolmogorov relation splits m+n steps after m steps at an intermediate state k. Here p^(r)_ij means the probability of j after r steps given i now; r,m,n are non-negative integers. In a homogeneous chain P^(r)=P^r. The zero-step matrix I leaves the current state unchanged. Our calculations use only m=n=1; longer-horizon computations are outside this unit."
+        },
+        {
+          "id": "products",
+          "type": "prose",
+          "objectives": [
+            "3.2.2"
+          ],
+          "text": "For two steps, the matrix rule is precisely the path rule: select row i of P and column j of P, multiply matching entries indexed by k, then add. Row i lists probabilities of arriving at each intermediate state; column j lists the chance of reaching j from each such state. Pairing row i with row j instead would describe the wrong conditional events. The symbol $p^{(2)}_{ij}$ means an entry of $P^2$, not the square of the single entry $p_{ij}$.\n\nA useful check comes from summing over destinations. Each intermediate row sums to one, so $\\sum_j\\sum_k p_{ik}p_{kj}=\\sum_k p_{ik}=1$. Therefore each row of $P^2$ is again a distribution. This catches many arithmetic errors, but does not prove every entry correct: several wrong entries could still sum to one."
+        },
+        {
+          "id": "experiment",
+          "type": "widget",
+          "objectives": [
+            "3.2.2"
+          ],
+          "title": "Construct a two-day probability",
+          "height": 950,
+          "purpose": "Connect each matching row/column pair to a conditional path and investigate an invariant.",
+          "prediction": "With start A and destination C, predict whether moving probability from B\u2192B to B\u2192A changes the two-day answer. Then choose B\u2192A and predict whether the answer is the same at q=0 and q=0.90.",
+          "debrief": "A\u2192C stays 0.14 because only the B row changes, its C entry stays 0.10, and the A starting row stays fixed. B\u2192A does change: its first-step row and its second-step column both involve q. The widget computes the sum exactly up to decimal floating-point display, not a simulation estimate.",
+          "fallback": "At q=0.40, P\u00b2 rows are A: (0.50,0.36,0.14); B: (0.46,0.40,0.14); C: (0.34,0.36,0.30). A\u2192C paths contribute 0.06,0.03,0.05. At q=0 and q=0.90, B\u2192A totals are 0.02 and 0.56 respectively. All three paths remain in the sum even when a factor is zero.",
+          "transfer": "Without controls, explain why C\u2192C is also unaffected by q, but A\u2192A changes. Check your reasoning with a row/column path expression.",
+          "checks": [
+            "Default A\u2192C gives contributions 0.06, 0.03, 0.05 and total 0.14.",
+            "For B\u2192A q=0 gives 0.02 and q=0.90 gives 0.56; all rows remain stochastic.",
+            "A\u2192C and C\u2192C are invariant as q varies.",
+            "Reset restores A,C,q=0.40; repeated selection remains deterministic.",
+            "Invalid state or q displays an error while the readable alternative remains available.",
+            "Browser checks pending: native keyboard controls and visible focus, 320px width, iframe console, reduced motion, no-script reading and host state bridge."
+          ],
+          "html": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><style>body{font:16px/1.45 system-ui,sans-serif;margin:16px;color:#162c3b;background:#fff}h2{font-size:1.2rem}label{display:block;margin:10px 0}select,input,button{font:inherit;padding:6px;max-width:100%}button{border:2px solid #345;padding:8px;background:#eef5f8}*:focus-visible{outline:3px solid #a24012;outline-offset:3px}table{border-collapse:collapse;width:100%;margin:12px 0;font-variant-numeric:tabular-nums}th,td{border:1px solid #aab7c0;padding:7px;text-align:left}caption{text-align:left;font-weight:700}.chosen{font-weight:bold;background:#e5f0f5}#result{padding:10px;border-left:4px solid #345}small{display:block}#error{color:#8a2100}@media(max-width:420px){body{margin:8px;font-size:14px}th,td{padding:4px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head><body><h2>Three paths, one matrix entry</h2><p>Analytic model; no simulated robots. Predict the two-day chance before changing a control. Rows mean today; columns mean tomorrow.</p><label>Starting state <select id=\"start\"><option value=\"0\">A \u2014 available</option><option value=\"1\">B \u2014 charging</option><option value=\"2\">C \u2014 repair</option></select></label><label>Destination after two days <select id=\"end\"><option value=\"0\">A \u2014 available</option><option value=\"1\">B \u2014 charging</option><option value=\"2\" selected>C \u2014 repair</option></select></label><label>B\u2192A probability q: <output id=\"qvalue\">0.40</output><input id=\"q\" type=\"range\" aria-label=\"B to A transition probability\" min=\"0\" max=\"0.9\" step=\"0.1\" value=\"0.4\"></label><small>B\u2192C stays 0.10; B\u2192B becomes 0.90\u2212q. Other rows stay fixed. All rows always sum to one.</small><button id=\"reset\" type=\"button\">Reset to A\u2192C, q=0.40</button><div id=\"matrix\"></div><div id=\"paths\"></div><p id=\"result\" role=\"status\" aria-live=\"polite\"></p><p id=\"error\" role=\"alert\"></p><details><summary>Readable alternative and explanation</summary><p>At q=0.40, A\u2192C in two days has contributions via A: 0.60\u00d70.10=0.06; via B: 0.30\u00d70.10=0.03; via C: 0.10\u00d70.50=0.05. Sum 0.14. Changing q cannot alter this A\u2192C total because B\u2192C remains 0.10. For B\u2192A, totals are 0.02 at q=0 and 0.56 at q=0.90. The two-step total uses three mutually exclusive intermediate states, even if one contribution is zero.</p></details><noscript><p>Controls need JavaScript; use the readable alternative above and the lesson\u2019s full matrix calculation.</p></noscript><script>\n(function(){'use strict';\nconst names=['A','B','C']; const el=id=>document.getElementById(id);\nfunction compute(q,i,j){const P=[[.6,.3,.1],[q,.9-q,.1],[.2,.3,.5]]; const terms=P[i].map((v,k)=>v*P[k][j]); return {P,terms,total:terms.reduce((a,b)=>a+b,0)};}\nfunction render(){try{const raw=Number(el('q').value); if(!Number.isFinite(raw)||raw<0||raw>.9)throw Error('Choose q between 0 and 0.90.'); const i=Number(el('start').value),j=Number(el('end').value);if(![0,1,2].includes(i)||![0,1,2].includes(j))throw Error('Choose one of the three named states.');const {P,terms,total}=compute(raw,i,j); el('qvalue').textContent=raw.toFixed(2);\nel('matrix').innerHTML='<table><caption>P: selected row '+names[i]+' and column '+names[j]+' are marked by text</caption><thead><tr><th>From / to</th>'+names.map((n,k)=>'<th>'+n+(k===j?' [column]':'')+'</th>').join('')+'</tr></thead><tbody>'+P.map((r,k)=>'<tr><th>'+names[k]+(k===i?' [row]':'')+'</th>'+r.map((v,l)=>'<td'+(k===i||l===j?' class=\"chosen\"':'')+'>'+v.toFixed(2)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';\nel('paths').innerHTML='<table><caption>Multiply along each path; add down the contributions</caption><thead><tr><th>Path</th><th>Row \u00d7 column</th><th>Contribution</th></tr></thead><tbody>'+terms.map((v,k)=>'<tr><th>'+names[i]+' \u2192 '+names[k]+' \u2192 '+names[j]+'</th><td>'+P[i][k].toFixed(2)+' \u00d7 '+P[k][j].toFixed(2)+'</td><td>'+v.toFixed(4)+'</td></tr>').join('')+'</tbody></table>';\nel('result').textContent='P\u00b2['+names[i]+','+names[j]+'] = '+terms.map(v=>v.toFixed(4)).join(' + ')+' = '+total.toFixed(4)+'. This is the two-day probability.';el('error').textContent=''; if(window.lessonBridge&&typeof window.lessonBridge.reportState==='function')window.lessonBridge.reportState({start:names[i],destination:names[j],q:raw,contributions:terms,total});\n}catch(e){el('error').textContent='The calculation could not update: '+e.message+' Use the readable alternative below.';}}\n['start','end'].forEach(id=>el(id).addEventListener('change',render));el('q').addEventListener('input',render);el('reset').addEventListener('click',()=>{el('start').value='0';el('end').value='2';el('q').value='0.4';render();});render();\n})();</script></body></html>"
+        },
+        {
+          "id": "transfer-teaching",
+          "type": "prose",
+          "objectives": [
+            "3.2.2"
+          ],
+          "text": "The experiment changes one conditional distribution while preserving its total. Do not infer that every destination must respond. For A\u2192C, both the first-step A row and the second-step C column are unchanged. For C\u2192C, the same argument uses the C row and C column. For A\u2192A, the path through B contains $0.30q$, so the total changes. A causal explanation in terms of paths is stronger than reporting what a slider appeared to do.\n\nWhen using a transition matrix, first identify the time horizon and starting information. Then state the conditioning, select the intermediate partition, and only then calculate. The checks are equally specific: non-negative entries and unit row sums establish a valid probability table; checking an individual path establishes the intended event; summing the final row checks the distribution. None alone establishes that the real robot\u2019s behaviour is Markov or homogeneous."
+        },
+        {
+          "id": "practice-heading",
+          "type": "heading",
+          "text": "Independent practice: attempt before revealing feedback",
+          "level": 2
+        },
+        {
+          "id": "q-features",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.1"
+          ],
+          "prompt": "A fleet analyst says: \u201cThe table is Markov because every row sums to one. If repair duration affects tomorrow, it still works because C means repair.\u201d Specify the discrete observation times and the mutually exclusive, exhaustive state set for this robot model. Explain the Markov and homogeneity assumptions, diagnose the duration issue, propose a possible repair to the state description, and state the initial information required for an unconditional forecast. [7 marks]",
+          "taughtIn": [
+            "model",
+            "markov",
+            "assumptions",
+            "read-matrix"
+          ],
+          "hints": [
+            "Row sums check a distribution, not its adequacy for representing a history."
+          ],
+          "solution": "[1] Observe at the end of each day, indexed by t=0,1,2,\u2026; X_t is the robot\u2019s state at that observation. [1] Use S={A available, B charging, C under repair}, with exactly one of these exhaustive categories assigned at each observation. [1] Markov means earlier history adds no next-state information once the current state is known. [1] Homogeneity means the transition law is constant across days; stochastic rows alone imply neither property. [1] If elapsed repair duration changes tomorrow\u2019s distribution within state C, the three-state Markov assumption fails. [1] Splitting C by duration is a possible repair to retain relevant information, subject to reassessing the Markov assumption. [1] An unconditional forecast also requires an initial distribution over A,B,C (or a known initial state as a point mass). These seven statements attain all seven distinct marks.",
+          "rubric": [
+            {
+              "text": "Specifies end-of-day discrete observations and index t=0,1,2,\u2026.",
+              "marks": 1,
+              "taughtIn": [
+                "model"
+              ]
+            },
+            {
+              "text": "Specifies A/B/C meanings as mutually exclusive and exhaustive states.",
+              "marks": 1,
+              "taughtIn": [
+                "model"
+              ]
+            },
+            {
+              "text": "States the conditional-history Markov property.",
+              "marks": 1,
+              "taughtIn": [
+                "model",
+                "markov"
+              ]
+            },
+            {
+              "text": "Distinguishes time homogeneity from stochastic row sums.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions",
+                "read-matrix"
+              ]
+            },
+            {
+              "text": "Explains why duration is relevant omitted history.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions"
+              ]
+            },
+            {
+              "text": "Suggests enriched states and reassessment.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions"
+              ]
+            },
+            {
+              "text": "Requires initial distribution or specified initial state.",
+              "marks": 1,
+              "taughtIn": [
+                "assumptions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-ck-statement",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "For a finite-state homogeneous Markov chain, state the Chapman\u2013Kolmogorov relation in indexed probability form. Define its notation and index domains, name the assumptions used, and explain why splitting at the intermediate time produces a sum of conditional products. Give the matrix form and zero-step convention. You need not calculate any horizon longer than two steps. [7 marks]",
+          "taughtIn": [
+            "model",
+            "markov",
+            "assumptions",
+            "split",
+            "ck",
+            "products"
+          ],
+          "hints": [
+            "Which mutually exclusive events describe the state at the splitting time? Explain the multiplication rule without assuming independent transitions."
+          ],
+          "solution": "[1] The relation is p^(m+n)_ij = \u03a3_{k\u2208S} p^(m)_ik p^(n)_kj. [1] Here p^(r)_ij=Pr(X_(t+r)=j | X_t=i), i,j,k\u2208S, and r,m,n,t are non-negative integers; homogeneity removes dependence on t. [1] The model is Markov and time homogeneous, with conditioning on possible starting states/histories. [1] The events X_(t+m)=k, k\u2208S, partition the intermediate state: exactly one occurs, so total probability adds their contributions. [1] Within each contribution, the multiplication rule gives the chance of reaching k times the conditional chance of reaching j; Markov removes earlier history and homogeneity identifies the latter factor as p^(n)_kj. This is not unconditional independence. [1] In matrix form P^(m+n)=P^(m)P^(n). [1] P^(0)=I, since zero steps leave the state unchanged (and in the homogeneous model P^(r)=P^r). These seven distinct statements attain 7/7. The formula is stated generally; all required numerical applications in this unit remain one/two steps.",
+          "rubric": [
+            {
+              "text": "States the indexed sum over intermediate states correctly.",
+              "marks": 1,
+              "taughtIn": [
+                "ck"
+              ]
+            },
+            {
+              "text": "Defines the r-step conditional probability and state/non-negative integer index domains.",
+              "marks": 1,
+              "taughtIn": [
+                "model",
+                "ck"
+              ]
+            },
+            {
+              "text": "States Markov and homogeneity assumptions with meaningful conditioning.",
+              "marks": 1,
+              "taughtIn": [
+                "markov",
+                "assumptions",
+                "ck"
+              ]
+            },
+            {
+              "text": "Explains the exhaustive, mutually exclusive intermediate-state partition and addition.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "ck"
+              ]
+            },
+            {
+              "text": "Explains conditional multiplication and the role of Markov/homogeneity, without asserting independence.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "States the matrix Chapman\u2013Kolmogorov form correctly.",
+              "marks": 1,
+              "taughtIn": [
+                "ck",
+                "products"
+              ]
+            },
+            {
+              "text": "States and interprets the zero-step identity convention.",
+              "marks": 1,
+              "taughtIn": [
+                "ck"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-numeric",
+          "type": "question",
+          "questionKind": "numeric",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "Use the original matrix, with q=0.40. Given C today, calculate the probability of A two days later. Enter a probability to two decimal places.",
+          "answer": 0.34,
+          "tolerance": 1e-05,
+          "taughtIn": [
+            "split",
+            "worked",
+            "ck",
+            "products"
+          ],
+          "hints": [
+            "List C\u2192A\u2192A, C\u2192B\u2192A and C\u2192C\u2192A."
+          ],
+          "solution": "The three contributions are 0.20\u00d70.60=0.12, 0.30\u00d70.40=0.12 and 0.50\u00d70.20=0.10. Add to obtain 0.34. The entry 0.20 concerns one day; squaring it gives only the wrong repeated-entry calculation, not all intermediate paths."
+        },
+        {
+          "id": "q-completion",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "Complete the original matrix\u2019s two-step row for a robot known to be B today. Show each path sum, check the row total, and explain why the B-to-B answer includes a path that leaves B. [5 marks]",
+          "taughtIn": [
+            "split",
+            "worked",
+            "ck",
+            "products"
+          ],
+          "solution": "[1] To A: 0.40\u00d70.60+0.50\u00d70.40+0.10\u00d70.20=0.46. [1] To B: 0.40\u00d70.30+0.50\u00d70.50+0.10\u00d70.30=0.40. [1] To C: 0.40\u00d70.10+0.50\u00d70.10+0.10\u00d70.50=0.14. [1] The total is 1.00 and each entry is non-negative. [1] B\u2192A\u2192B (probability 0.12) leaves B then returns; the event specifies the endpoint, not remaining B throughout. This answer earns five non-overlapping marks.",
+          "rubric": [
+            {
+              "text": "Correct A path sum and 0.46.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "Correct B path sum and 0.40.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "Correct C path sum and 0.14.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "products"
+              ]
+            },
+            {
+              "text": "Checks non-negativity and unit total.",
+              "marks": 1,
+              "taughtIn": [
+                "products"
+              ]
+            },
+            {
+              "text": "Explains a leave-and-return path versus endpoint event.",
+              "marks": 1,
+              "taughtIn": [
+                "model",
+                "worked"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-transfer",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "A different depot has states Open (O) and Shut (S), with row matrix Q=((0.75,0.25),(0.40,0.60)). Assume a homogeneous Markov model and a known initial state O. An analyst claims the chance of O after two days is 0.75\u00b2. Correct the claim using named paths and a matrix entry. Then explain whether observing a non-unit column sum would invalidate Q. [4 marks]",
+          "taughtIn": [
+            "read-matrix",
+            "split",
+            "ck",
+            "products"
+          ],
+          "solution": "[1] Paths are O\u2192O\u2192O and O\u2192S\u2192O. [1] Their probabilities are 0.75\u00d70.75=0.5625 and 0.25\u00d70.40=0.10. [1] Thus (Q\u00b2)OO=0.6625; the claim omitted the return path. [1] A non-unit column sum does not invalidate a row transition matrix: the rows condition on different starting states, and each row here is non-negative and sums to one. Four distinct criteria give four marks.",
+          "rubric": [
+            {
+              "text": "Names both mutually exclusive intermediate paths.",
+              "marks": 1,
+              "taughtIn": [
+                "split"
+              ]
+            },
+            {
+              "text": "Uses conditional products 0.5625 and 0.10.",
+              "marks": 1,
+              "taughtIn": [
+                "split",
+                "worked"
+              ]
+            },
+            {
+              "text": "Adds to 0.6625 and identifies the omitted return path as an entry of Q\u00b2.",
+              "marks": 1,
+              "taughtIn": [
+                "ck",
+                "products"
+              ]
+            },
+            {
+              "text": "Explains why column sums are not the row stochasticity condition.",
+              "marks": 1,
+              "taughtIn": [
+                "read-matrix"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "q-widget-transfer",
+          "type": "question",
+          "questionKind": "written",
+          "objectives": [
+            "3.2.2"
+          ],
+          "prompt": "Without the controls, use the robot matrix family B=(q,0.90\u2212q,0.10) to justify why C\u2192C in two days stays constant, and give A\u2192A as a function of q for 0\u2264q\u22640.90. [3 marks]",
+          "taughtIn": [
+            "products",
+            "experiment",
+            "transfer-teaching"
+          ],
+          "solution": "[1] C\u2192C=0.20\u00d70.10+0.30\u00d70.10+0.50\u00d70.50=0.30. [1] None of these factors changes with q: the C row and C column remain fixed. [1] A\u2192A=0.60\u00d70.60+0.30q+0.10\u00d70.20=0.38+0.30q. These three criteria give three marks.",
+          "rubric": [
+            {
+              "text": "Correct C\u2192C path calculation, 0.30.",
+              "marks": 1,
+              "taughtIn": [
+                "products",
+                "experiment"
+              ]
+            },
+            {
+              "text": "Explains the unchanged C row and C column.",
+              "marks": 1,
+              "taughtIn": [
+                "transfer-teaching"
+              ]
+            },
+            {
+              "text": "Derives 0.38+0.30q using all A\u2192A paths.",
+              "marks": 1,
+              "taughtIn": [
+                "products",
+                "transfer-teaching"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "readiness",
+          "type": "callout",
+          "title": "Use your errors to choose a return route",
+          "tone": "idea",
+          "text": "If you equated row sums with the Markov assumption, revisit \u201cFrom an observation history to a model\u201d. If you squared one entry or added along a path, revisit \u201cSplit the future at tomorrow\u201d. If you transposed the matrix or required columns to sum to one, reread the row/column conventions. Then attempt the depot problem again without revealing its feedback. Revealing a solution or moving a control is not evidence of mastery."
+        }
+      ],
+      "summary": [
+        "A row transition matrix gives next-state probabilities conditional on today.",
+        "The Markov property removes earlier history after conditioning on the present; homogeneity allows one matrix across days.",
+        "Chapman\u2013Kolmogorov splits a longer transition at an intermediate state: multiply conditional probabilities along each path and add over mutually exclusive paths.",
+        "For two steps this is row-by-column multiplication in P\u00b2, with endpoint events including leave-and-return paths."
+      ],
+      "coverage": [
+        {
+          "objective": "3.2.1",
+          "teaching": [
+            "model",
+            "markov",
+            "assumptions",
+            "matrix",
+            "read-matrix"
+          ],
+          "practice": [
+            "q-features"
+          ],
+          "note": "Essential model features taught within the finite-state homogeneous daily scope."
+        },
+        {
+          "objective": "3.2.2",
+          "teaching": [
+            "split",
+            "worked",
+            "ck",
+            "products",
+            "experiment",
+            "transfer-teaching"
+          ],
+          "practice": [
+            "q-ck-statement",
+            "q-numeric",
+            "q-completion",
+            "q-transfer",
+            "q-widget-transfer"
+          ],
+          "note": "General relation, notation, assumptions and intermediate-state meaning independently elicited; numerical applications bounded to one-/two-step finite-state calculations. No claim of full wider exam coverage."
+        }
+      ],
+      "provenance": "Original prose, fictional robot/depot contexts, matrices, questions and self-contained widget authored for this trial. Inputs restricted to the author skill, its workflow/teaching/interaction references and supplied paraphrased 2019 syllabus. No source books, extracted text, prior outputs or diagnoses consulted.",
+      "technicalNotes": [
+        "Offline portable draft only. No upload, online preview, browser verification, student pilot or expert review claimed. Arithmetic and widget script checks are recorded separately in verification.md. Exact analytic probabilities are displayed to four decimals; the controls change a stated model family rather than simulate data."
+      ]
+    },
+    "review": {
+      "revision": 2,
+      "reviewer": "Independent AI technical/pedagogical review and root browser checks; native authoring verification \u2014 pilot",
+      "level": "pilot",
+      "checks": {
+        "technical": "Independent exact-rational review and retest confirmed path sums, P\u00b2/Q\u00b2, q endpoints, C-K interpretation and all solutions; embedded script checked across90 cases.",
+        "pedagogy": "Independent review/retest resolved assessment gaps; derivations/relations are now independently elicited, every substantive criterion taught earlier, rubrics attainable. Historical scope is bounded. Current revision splits the identical closing summary into four readable points; exact text identity and unchanged teaching/assessment/widget checked.",
+        "interaction": "Root exercised actual sandbox frame: .5000 at q=.4 and .6500 at .9 for A\u2192A; reset A\u2192C=.1400. Keyboard Home/End and mobile path tables work. Native author access, draft save, review invalidation, validation and preview link checked.",
+        "accessibility": "Root checked390px mobile width/navigation, keyboard range controls, explicit custom slider name, readable alternatives and tables. No screen-reader or broad assistive-technology audit; pilot status.",
+        "originality": "Original prose, examples, questions and code designed from declared2019 syllabus atoms; no supplied reference-book passages/assets copied. Independent external originality certification not performed."
+      },
+      "unresolved": [],
+      "createdAt": "2026-10-27T15:49:22.490Z"
+    },
+    "updatedAt": "2026-10-27T15:49:25.131Z"
+  }
+]

@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {generateKeyPairSync,createHash,randomBytes,sign} from 'node:crypto';
+import {encodeCBOR} from '@levischuck/tiny-cbor';
+const origin=process.env.TEST_ORIGIN||'http://127.0.0.1:8787',rp=new URL(origin).hostname;
+let cookies='';
+async function call(path,body,expected=200,headers={}){const r=await fetch(origin+path,{method:body===undefined?'GET':'POST',headers:{'content-type':'application/json',cookie:cookies,...headers},body:body===undefined?undefined:JSON.stringify(body),redirect:'manual'});const set=r.headers.get('set-cookie');if(set){const pair=set.split(';')[0];const name=pair.split('=')[0];cookies=cookies.split('; ').filter(x=>!x.startsWith(name+'=')).concat(pair).filter(Boolean).join('; ');}const text=await r.text();assert.equal(r.status,expected,`${path}: ${text}`);return text?JSON.parse(text):null;}
+const b64=b=>Buffer.from(b).toString('base64url'),sha=b=>createHash('sha256').update(b).digest();
+await call('/api/courses');await call('/api/courses?draft=1',undefined,403,{'oai-authenticated-user-id':'fake','oai-authenticated-user-email':'maahijoshi58@gmail.com'});
+const options=await call('/api/auth/registration-options',{name:'Security test reader'});
+const {privateKey,publicKey}=generateKeyPairSync('ec',{namedCurve:'prime256v1'});const jwk=publicKey.export({format:'jwk'});const credential=randomBytes(32);
+const cose=encodeCBOR(new Map([[1,2],[3,-7],[-1,1],[-2,Buffer.from(jwk.x,'base64url')],[-3,Buffer.from(jwk.y,'base64url')]]));
+const length=Buffer.alloc(2);length.writeUInt16BE(credential.length);
+const data=Buffer.concat([sha(rp),Buffer.from([0x45]),Buffer.alloc(4),Buffer.alloc(16),length,credential,Buffer.from(cose)]);
+const client=Buffer.from(JSON.stringify({type:'webauthn.create',challenge:options.challenge,origin,crossOrigin:false}));
+const att=encodeCBOR(new Map([['fmt','none'],['authData',data],['attStmt',new Map()]]));
+const response={id:b64(credential),rawId:b64(credential),type:'public-key',response:{clientDataJSON:b64(client),attestationObject:b64(att),transports:['internal']},clientExtensionResults:{},authenticatorAttachment:'platform'};
+const reg=await call('/api/auth/registration-verify',response);assert.ok(reg.recovery);assert.equal((await call('/api/session')).author,false);await call('/api/courses?draft=1',undefined,403);await call('/api/auth/registration-verify',response,400);
+await call('/api/progress/sampling-means',{completed:true,bookmarked:true,notes:'Private test note',attempts:{}});assert.equal((await call('/api/progress/sampling-means')).notes,'Private test note');
+await call('/api/auth/logout',{});await call('/api/progress/sampling-means',undefined,401);
+const login=await call('/api/auth/authentication-options',{});const cd=Buffer.from(JSON.stringify({type:'webauthn.get',challenge:login.challenge,origin,crossOrigin:false}));const ad=Buffer.concat([sha(rp),Buffer.from([0x05]),Buffer.from([0,0,0,1])]);
+const sig=sign('sha256',Buffer.concat([ad,sha(cd)]),privateKey);
+await call('/api/auth/authentication-verify',{id:b64(credential),rawId:b64(credential),type:'public-key',response:{clientDataJSON:b64(cd),authenticatorData:b64(ad),signature:b64(sig),userHandle:null},clientExtensionResults:{}});
+assert.equal((await call('/api/progress/sampling-means')).notes,'Private test note');
+await call('/api/save-course',{},403);await call('/api/auth/logout',{});const recovered=await call('/api/auth/recover',{code:reg.recovery});assert.ok(recovered.recovery);await call('/api/auth/recover',{code:reg.recovery},401);
+console.log('PASS: WebAuthn registration/sign-in, replay rejection, account recovery, private progress, author-header spoof rejection, reader authorization.');
