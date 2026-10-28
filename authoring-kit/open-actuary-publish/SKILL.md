@@ -5,7 +5,7 @@ description: Save, preview, review, publish, export or restore Open Actuary cour
 
 # Operate the Open Actuary content workspace
 
-The standalone workspace is https://open-actuary.subasj02.workers.dev, with its OAuth-protected MCP endpoint at `/mcp`. Use its connected tools and verify `studio_overview` reports author access before writing. If both the original ChatGPT Site and standalone connections are present, select the standalone connection for new work unless the user explicitly identifies the original Site. If the standalone connection is absent, deliver a portable draft and explain how to connect it; do not silently upload to the old Site. 
+The standalone workspace is https://open-actuary.subasj02.workers.dev, with its OAuth-protected MCP endpoint at `/mcp`. Use its connected tools and verify `studio_overview` reports author access before writing. If both the original ChatGPT Site and standalone connections are present, select the standalone connection for new work unless the user explicitly identifies the original Site. If the standalone connection is absent, deliver a portable draft and explain how to connect it; do not silently upload to the old Site.
 
 Use `studio_overview` and `get_authoring_contract` from the selected Open Actuary connection. The verified owner can write; readers see published snapshots. Use `get_course`/`get_lesson` before each update and preserve stable IDs. Never invent the current revision or overwrite a conflict.
 

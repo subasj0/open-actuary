@@ -63,3 +63,7 @@ Upgrade when usage reaches roughly 70% of any quota, CPU-limit failures appear, 
 - https://simplewebauthn.dev/docs/packages/server
 - https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
 - https://developers.openai.com/plugins/build/auth
+
+## Observed deployment checks
+
+A deployed smoke run returned successful responses for health, catalogue, course, both lesson types, and search. Most initial API observations were 249–425 ms, with one catalogue outlier near 9.9 seconds. Six catalogue follow-up observations were 637, 169, 206, 120, 146 and 150 ms. This small sample supports practical usability but does not establish a latency percentile, long-term reliability, or the cause of the outlier. Browser verification confirmed the catalogue, CS1 course/lesson navigation, math rendering, independent account page, and an actual 200-sample simulation producing updated plot statistics. See `hosted-smoke.json` for the raw timings.

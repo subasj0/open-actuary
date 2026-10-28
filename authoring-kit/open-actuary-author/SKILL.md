@@ -5,7 +5,7 @@ description: Create original syllabus-led interactive actuarial courses and less
 
 # Author a learning experience in Open Actuary
 
-The standalone workspace is https://open-actuary.subasj02.workers.dev, with its OAuth-protected MCP endpoint at `/mcp`. Use its connected tools and verify `studio_overview` reports author access before writing. If both the original ChatGPT Site and standalone connections are present, select the standalone connection for new work unless the user explicitly identifies the original Site. If the standalone connection is absent, deliver a portable draft and explain how to connect it; do not silently upload to the old Site. 
+The standalone workspace is https://open-actuary.subasj02.workers.dev, with its OAuth-protected MCP endpoint at `/mcp`. Use its connected tools and verify `studio_overview` reports author access before writing. If both the original ChatGPT Site and standalone connections are present, select the standalone connection for new work unless the user explicitly identifies the original Site. If the standalone connection is absent, deliver a portable draft and explain how to connect it; do not silently upload to the old Site.
 
 Make the intended understanding explicit before selecting a component. Preserve serious textbook-quality explanations and assessment while using interaction to reveal something a static explanation makes difficult.
 

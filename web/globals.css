@@ -13,4 +13,3 @@
 @media(max-width:760px){.mobile-search-toggle{display:flex;flex-shrink:0;width:34px;height:34px}.mobile-search-panel{display:block}.account-label{display:none}.account-short{display:inline}.header-inner{gap:9px}.brand{font-size:18px;gap:8px;min-width:0}.brand-mark{width:33px;height:36px;flex-shrink:0}.brand small{font-size:6px;letter-spacing:.12em}.plot-axis,.plot-axis-title,.plot-annotations{font-size:12px}.plot-axis{padding-left:7%;padding-right:7%}.plot svg{min-height:160px}.site-header nav{margin-left:auto}}
 
 @media(max-width:760px){.header-inner>.brand{flex-shrink:0}.header-inner>nav:not(.mobile-open){display:none}.header-inner>.account-menu{margin-left:auto}.account-studio-link{display:block;margin-bottom:12px}}
-
