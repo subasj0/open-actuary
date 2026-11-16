@@ -31,6 +31,11 @@ export async function publishDocument(db:D1Database,id:string,expectedRevision:n
  const r=await db.prepare('UPDATE documents SET published=draft,published_revision=revision,published_review=review,updated_at=? WHERE id=? AND revision=? AND review IS NOT NULL').bind(now(),id,expectedRevision).run();if(r.meta.changes!==1)throw new AppError(409,'Draft changed while publishing.');return getDocument(db,id);
 }
 export async function history(db:D1Database,id:string){return(await db.prepare('SELECT revision,created_at,message FROM revisions WHERE document_id=? ORDER BY revision DESC LIMIT 100').bind(id).all()).results;}
+export async function revisionContent(db:D1Database,id:string,revision:number){
+ const row=await db.prepare('SELECT content,created_at,message FROM revisions WHERE document_id=? AND revision=?').bind(id,revision).first<{content:string;created_at:string;message:string}>();
+ if(!row)throw new AppError(404,'Revision not found.');
+ return{revision,createdAt:row.created_at,message:row.message,content:JSON.parse(row.content) as Course|Lesson};
+}
 export async function restore(db:D1Database,id:string,revision:number,expectedRevision:number){const d=await getDocument(db,id);const old=await db.prepare('SELECT content FROM revisions WHERE document_id=? AND revision=?').bind(id,revision).first<{content:string}>();if(!old)throw new AppError(404,'Revision not found.');return saveDocument(db,d.kind,JSON.parse(old.content),expectedRevision,`Restored revision ${revision}`);}
 export async function unpublish(db:D1Database,id:string,expectedRevision:number){const r=await db.prepare('UPDATE documents SET published=NULL,published_revision=NULL,published_review=NULL WHERE id=? AND revision=?').bind(id,expectedRevision).run();if(r.meta.changes!==1)throw new AppError(409,'Draft changed or content was not found.');return getDocument(db,id);}
 export async function getProgress(db:D1Database,userId:string,lessonId:string){const r=await db.prepare('SELECT data FROM learner_progress WHERE user_id=? AND lesson_id=?').bind(userId,lessonId).first<{data:string}>();return r?JSON.parse(r.data):null;}
